@@ -1,0 +1,25 @@
+body {
+    height: 100vh;
+}
+
+header {
+    height: 10%;
+}
+
+h1, #weather {
+    height: 90%;
+}
+
+main {
+    height: 90%;
+}
+
+.current-future {
+    height: 50%;
+    padding: 20px;
+}
+
+.border-padding {
+    padding: 20px;
+    margin: 10px;
+}

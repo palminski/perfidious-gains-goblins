@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-white bg-dark text-center" id="title">Weather Dashboard</h1>
+    </header>
+    <main class="row">
+        <div class="city-search  col-3">
+            <form class="border-padding border-bottom border-primary">
+                <label for="city">
+                    <strong>Search for a City:</strong>
+                </label>
+                <input type="text" id="city" name="city">
+                <button type="button" class="btn btn-primary m-3" id="search-btn">Search</button>
+            </form>
+            <div class="vstack gap-2" id="past-searches"></div>
+        </div>
+        <section class="col-9" id="weather">
+            <div class="border-padding current-future border border-primary rounded" id="current-weather"></div>
+            <div class="border-padding current-future">
+                <h3>5-Day Forecast:</h3>
+                <div class = 'row' id="future-weather"></div>
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./assets/js/test.js"></script>
+</body>
+
+</html>
