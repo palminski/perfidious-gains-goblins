@@ -18,8 +18,6 @@ app.get('/notes', (req,res) => {
 });
 
 
-
-
 app.get('/api/notes', (req, res) => {
     fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8', (err, data) => {
         res.json(JSON.parse(data));
@@ -35,7 +33,7 @@ app.post('/api/notes', (req, res) => {
     };
     notes.push(newNote);
     
-    fs.writeFile(`${__dirname}/db/db.json`, JSON.stringify(notes, null, 2), (err) => {
+    fs.writeFile(`${__dirname}/db/db.json`, JSON.stringify(notes), (err) => {
         if (err) {
             return res.status(500).json({err});
         }
