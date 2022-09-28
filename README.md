@@ -6,9 +6,7 @@
   - [Description](#description)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [license](#license)
-  - [Contributing](#contributing)
-  - [Tests](#tests)
+  - [Iamges](#images)
   - [Questions](#questions)
   
   ## Description
@@ -23,20 +21,12 @@
   
   To use go to the website and enter in click on the get started. Add in task with descriptions and add notes. You are able to add and delete tasks.
 
-
-  ## Contributing
-
-  DeanDunivan
   
   ## Images
 
   <img src="images/Screen Shot 2022-09-28 at 10.31.30 AM.png">
 
   <img src="images/Screen Shot 2022-09-28 at 10.32.09 AM.png">
-
-  ## Tests
-
-  n/a
 
   ## Questions
 
