@@ -1,12 +1,1 @@
-[
-  {
-    "title": "Laundry",
-    "text": "do laundry",
-    "id": "8nrdklzgl8j9r3nj"
-  },
-  {
-    "title": "fishing",
-    "text": "go fishing",
-    "id": "8nrdkm00l8j9ria4"
-  }
-]
+[{"title":"fishing","text":"go fishing","id":"8nrdkm00l8j9ria4"},{"title":"sleep","text":"go to sleep","id":"8nrdkmgsl8jaafky"},{"title":"dinner","text":"make dinner","id":"8nrdkmh6l8jaau4p"}]
