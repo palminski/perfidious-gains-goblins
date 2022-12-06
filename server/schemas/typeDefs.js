@@ -11,7 +11,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        
+        addUser(username: String!, password: String!): User
+        deleteUser(_id: ID!): User
     }
 `;
 
