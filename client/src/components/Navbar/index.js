@@ -12,10 +12,10 @@ export function Navbar(props) {
 
             <div className="collapse navbar-collapse" id="navbarNav">
                 <div className="navbar-nav ml-auto">
-                <a className="nav-item nav-link header-text" href="#community" onClick={() => setPageSelected('community')}>Community</a>
-                <a className="nav-item nav-link header-text" href="#journal" onClick={() => setPageSelected('journal')}>Journal</a>
-                <a className="nav-item nav-link header-text" href="#workouts" onClick={() => setPageSelected('workouts')}>Workouts</a>
-                <a className="nav-item nav-link header-text" href="#signup" onClick={() => setPageSelected('signup')}>Signup</a>
+                <a className="nav-item nav-link header-text" href="#community" onClick={() => setPageSelected('community')}>Community - </a>
+                <a className="nav-item nav-link header-text" href="#journal" onClick={() => setPageSelected('journal')}>Journal - </a>
+                <a className="nav-item nav-link header-text" href="#workouts" onClick={() => setPageSelected('workouts')}>Workouts - </a>
+                <a className="nav-item nav-link header-text" href="#signup" onClick={() => setPageSelected('signup')}>Signup - </a>
                 <a className="nav-item nav-link header-text" href="#counter" onClick={() => setPageSelected('counter')}>Test Redux</a>
                 </div>
             </div>
