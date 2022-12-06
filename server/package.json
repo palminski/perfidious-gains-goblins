@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "nodemon",
     "start": "node server"
@@ -18,5 +18,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.12.1",
     "mongoose": "^6.7.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
   }
 }
