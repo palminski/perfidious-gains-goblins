@@ -1,15 +1,35 @@
-const {User} = require('../models');
+const {User, Post} = require('../models');
 
 const resolvers = {
     Query: {
         users: async() => {
             return User.find()
         },
+        posts: async() => {
+            return Post.find()
+        },
     },
     Mutation: {
         addUser: async(parent, args) => {
             const user = await User.create(args);
             return user;
+        },
+        addPost: async(parent, args) => {
+            const post = await Post.create(args);
+            let numberOfPosts = await Post.collection.countDocuments();
+            if (numberOfPosts > 5) {
+                console.log(`there are now ${numberOfPosts} posts`);
+                //This is where we can delete old posts when new ones show up
+            }
+            return post;
+        },
+        addComment: async(parent, {postId, commentText, createdBy}) => {
+            const updatedPost = await Post.findOneAndUpdate(
+                {_id: postId},
+                {$push: {comments: {commentText, createdBy}}},
+                {new:true, runValidators: true}
+            );
+            return updatedPost;
         },
         deleteUser: async(parent, {_id}) => {
             const user = await User.deleteOne({_id: _id});
@@ -24,6 +44,17 @@ const resolvers = {
             );
             return updatedUser;
         },
+    },
+    //Field Resolvers
+    User: {
+        posts: async (root) => {
+            try {
+                return await Post.find({createdBy:root.username});
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        }
     }
 };
 
