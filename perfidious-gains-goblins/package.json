@@ -1,0 +1,17 @@
+{
+  "name": "test-name-fitness-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+
+  "scripts": {
+    "develop": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" ",
+    "install": "cd server && npm i && cd ../client && npm i"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
