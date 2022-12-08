@@ -1,6 +1,30 @@
 export function Navbar(props) {
     const {pageSelected, setPageSelected} = props
 
+
+    return (
+        <nav >
+
+
+
+            <div className="flex-container">
+                <h1 className="home-button">PGG</h1>
+                <h1 className="current-page">{pageSelected}</h1>
+            </div>
+
+            <ul>
+                <li><a href="#community" onClick={() => setPageSelected('Community')}>Community</a></li>
+                <li><a href="#journal" onClick={() => setPageSelected('Journal')}>Journal</a></li>
+                <li><a href="#workouts" onClick={() => setPageSelected('Workouts')}>Workouts</a></li>
+                <li><a href="#signup" onClick={() => setPageSelected('Signup')}>Signup</a></li>
+                <li><a href="#counter" onClick={() => setPageSelected('Counter')}>Test Redux</a></li>
+            </ul>
+
+
+        </nav>
+    )
+
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-c-brown py-3">
 
