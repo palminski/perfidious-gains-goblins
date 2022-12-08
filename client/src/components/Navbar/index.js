@@ -3,6 +3,7 @@ export function Navbar(props) {
 
     return (
         <nav >
+            
             <div className="flex-container">
                 <h1 className="home-button">PGG</h1>
                 <h1 className="current-page grow-in" >{pageSelected}</h1>
@@ -14,6 +15,9 @@ export function Navbar(props) {
                 <li><a className={(pageSelected==='Signup') ? 'current-navigation-link' : "navigation-link"} href="#signup" onClick={() => setPageSelected('Signup')}>Signup</a></li>
                 <li><a className={(pageSelected==='Counter') ? 'current-navigation-link' : "navigation-link"} href="#counter" onClick={() => setPageSelected('Counter')}>Test Redux</a></li>
             </ul>
+           
+            
+
         </nav>
     )
 }
