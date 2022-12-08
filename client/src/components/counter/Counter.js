@@ -18,7 +18,7 @@ export function Counter() {
   const incrementValue = Number(incrementAmount) || 0;
 
   return (
-    <div>
+    <div className="grow-in">
       <h1>COUNTER PAGE</h1>
       <h2>for Testing Redux</h2>
       <div className={styles.row}>
