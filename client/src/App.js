@@ -19,11 +19,11 @@ function App() {
       
         <Navbar pageSelected={pageSelected} setPageSelected={setPageSelected}/>
         
-        {pageSelected === 'community' && <Community />}
-        {pageSelected === 'journal' && <Journal />}
-        {pageSelected === 'signup' && <Signup />}
-        {pageSelected === 'workouts' && <Workouts />}
-        {pageSelected === 'counter' && <Counter />}
+        {pageSelected === 'Community' && <Community />}
+        {pageSelected === 'Journal' && <Journal />}
+        {pageSelected === 'Signup' && <Signup />}
+        {pageSelected === 'Workouts' && <Workouts />}
+        {pageSelected === 'Counter' && <Counter />}
         
       
     </div>
