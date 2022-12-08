@@ -1,7 +1,7 @@
 export function Workouts(props) {
     return(
         <>
-        <h1>Workouts</h1>
+        <h1 className="grow-in">Workouts</h1>
         </>
     )
 }

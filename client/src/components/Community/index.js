@@ -1,7 +1,7 @@
 export function Community(props) {
     return(
         <>
-        <h1>Community</h1>
+        <h1 className="grow-in">Community</h1>
         </>
     )
 }

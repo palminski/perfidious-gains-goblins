@@ -1,7 +1,7 @@
 export function Journal(props) {
     return(
         <>
-        <h1>Journal</h1>
+        <h1 className="grow-in">Journal</h1>
         </>
     )
 }
