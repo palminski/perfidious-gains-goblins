@@ -1,7 +1,7 @@
 export function Signup(props) {
     return(
         <>
-        <h1>Signup</h1>
+        <h1 className="grow-in">Signup</h1>
         </>
     )
 }

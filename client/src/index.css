@@ -11,6 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Code for Keyframes and Animations */
+/* Keyframes */
+@keyframes grow-in {
+  from {transform: scale(0.95);}
+  to {transform: scale(1);}
+}
+/* Utility Classes for animations */
+.grow-in{
+  animation-name: grow-in;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+
+/* Code for Navbar */
 nav {
   background-color: rgb(51, 51, 51);
   margin-bottom: 15px;
@@ -40,18 +55,28 @@ nav ul {
 nav li {
   float:left
 }
-nav li a{
+.navigation-link{
   display: block;
   color: rgb(221, 221, 221);
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
-nav li a:hover{
-  
+.navigation-link:hover{
   color: rgb(255, 255, 255);
   background-color: rgb(51, 51, 51);
-  padding: 14px 29px;;
-
+  padding: 14px 23px;;
+}
+.current-navigation-link{
+  display: block;
+  color: rgb(255, 255, 255);
+  background-color: rgb(51, 51, 51);
+  padding: 14px 23px;;
+  transition-duration: 0.3s;
+  text-decoration: none;
+  text-align: center;
+  /* Disables link */
+  cursor: default;
+  pointer-events: none;
 }

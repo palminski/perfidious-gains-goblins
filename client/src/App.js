@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
 
-  const [pageSelected, setPageSelected] = useState('')
+  const [pageSelected, setPageSelected] = useState('Community')
 
   return (
     <div className="App">
