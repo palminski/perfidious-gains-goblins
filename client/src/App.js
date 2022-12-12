@@ -9,6 +9,7 @@ import { Community } from './components/Community';
 import { Journal } from './components/Journal';
 import { Signup } from './components/Signup';
 import { Workouts } from './components/Workouts';
+import { Login} from './components/Login';
 import { Navbar } from './components/Navbar';
 import './App.css';
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
@@ -47,6 +48,7 @@ function App() {
         {pageSelected === 'Signup' && <Signup />}
         {pageSelected === 'Workouts' && <Workouts />}
         {pageSelected === 'Counter' && <Counter />}
+        {pageSelected === 'Login' && <Login />}
         
       
     </div>
