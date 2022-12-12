@@ -1,9 +1,27 @@
 import "./journal.css"
 import {useState} from 'react';
+import EditModal from "../EditModal";
 
 export function Journal(props) {
-
+    //set up states
     const [tabSelected, setTabSelected] = useState("Excersizes");
+    const [modalOpen, setModalOpen] = useState(false);
+
+    //Modal Function
+    const toggleModal = () => {
+        if (document.body.style.overflow !== 'hidden') {
+            document.body.style.overflow = "hidden";
+            document.body.style.height = "100%";
+        }
+        else
+        {
+            document.body.style.overflow = "auto";
+            document.body.style.height = "auto";
+        };
+        setModalOpen(!modalOpen);
+
+
+    }
 
     return (
         <div className="grow-in">
@@ -19,35 +37,69 @@ export function Journal(props) {
                 
                     <ul className="journal-list">
                         <li className="journal-list-item">
-                            {"Bench Press"} - {180} {'lbs'} - {5} sets of {5}
+                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                         <li className="journal-list-item">
-                            {"Bench Press"} - {180} {'lbs'} - {5} sets of {5}
+                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                         <li className="journal-list-item">
-                            {"Bench Press"} - {180} {'lbs'} - {5} sets of {5}
+                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                         <li className="journal-list-item">
-                            {"Bench Press"} - {180} {'lbs'} - {5} sets of {5}
+                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                     </ul>
                 }
 
                 {tabSelected === "Stats" &&
-
                     <ul className="journal-list">
                         <li className="journal-list-item">
-                            Weight: 150lbs
+                            <p>Weight - 150lbs</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                         <li className="journal-list-item">
-                            Age: 23
+                            <p>Height - 5 foot 7</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
                         <li className="journal-list-item">
-                            One Rep Max: Laughable
+                            <p>One Rep Max for Bench - Laughable</p>
+                            <div className="buttons">
+                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                            </div>
                         </li>
-
                     </ul>
+                }
+                <div className="tab-container">
+                    <h1 className="add-button" onClick={() => toggleModal()}>Add {tabSelected === "Excersizes" ? 'Excersize' : 'Stat'}</h1>
+                </div>
+                
 
+
+                {modalOpen &&
+                    <EditModal onClose={toggleModal}/>
                 }
 
 

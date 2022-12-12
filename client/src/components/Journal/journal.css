@@ -17,7 +17,6 @@
 .active-tab{
     background-color: rgb(90, 48, 94);
     
-    
 }
 .inactive-tab{
     background-color: rgb(99, 99, 99);
@@ -32,11 +31,12 @@
     background-color: rgb(90, 48, 94);
     list-style: none;
     list-style-position: inside;
-    border-radius: 0 25px 25px 15px;
+    border-radius: 0 25px 25px 0px;
     /* important prevents this from being overwritten by bootstrap */
     padding-left: 0 !important;
     padding-top: 15px; 
-    padding-bottom: 15px; 
+    padding-bottom: 15px;
+    margin-bottom: 0;
 }
 .journal-list-item{
     transition-duration: 0.5s;
@@ -48,11 +48,45 @@
     text-align: left;
     padding: 20px;
     border-radius: 0 25px 25px 0;
+    display: flex;
+    justify-content: space-between;
     /* Animation */
     animation-name: grow-down;
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
 }
+
+.buttons button{
+    color: white;
+    border-color: white ;
+    padding: 0 10px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: rgba(151, 105, 44, 0);
+    transition-duration: 0.5s;
+}
+.edit-button:hover {
+    background-color: rgb(12, 96, 110);
+    border-color: rgb(255, 255, 255);
+}
+.delete-button:hover {
+    background-color: rgb(126, 21, 21);
+    border-color: rgb(255, 255, 255);
+}
+
+.hidden-button {
+    margin-left: 15px;
+}
+
+.journal-list-item .hidden-button {
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+.journal-list-item:hover .hidden-button {
+    visibility: visible;
+    opacity: 1;
+}
+
 .journal-list-item:nth-child(even){
     background-color: rgb(99, 99, 99);
 }
@@ -65,4 +99,22 @@
 .stats{
     background-color: rgb(90, 48, 94);
     border-radius: 0 25px 25px 0;
+}
+
+.add-button{
+    display: inline-block;
+    align-items: left;
+    color: white;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    border-radius: 0px 0px 25px 25px;
+    padding: 10px;
+    padding-top: 0px;
+    transition-duration: 0.5s;
+}
+.add-button:hover{
+    padding-top: 25px;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    
 }
