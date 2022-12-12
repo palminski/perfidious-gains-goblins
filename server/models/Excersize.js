@@ -6,7 +6,7 @@ const {Schema} = require('mongoose');
             required: true,
             trim: true
         },
-        ammount:{
+        amount:{
             type: Number,
             required: true
         },
