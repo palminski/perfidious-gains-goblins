@@ -14,6 +14,7 @@ export function Login(props) {
       const mutationResponse = await login({
         variables: { username: formState.username, password: formState.password },
       });
+
       const token = mutationResponse.data.loginUser.token;
       Auth.login(token);
       props.setPageSelected("Journal");
