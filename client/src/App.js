@@ -37,6 +37,8 @@ function App() {
 
   const [pageSelected, setPageSelected] = useState('Community')
 
+
+
   return (
     <ApolloProvider client={client}>
     <div className="App">
@@ -48,7 +50,7 @@ function App() {
         {pageSelected === 'Signup' && <Signup />}
         {pageSelected === 'Workouts' && <Workouts />}
         {pageSelected === 'Counter' && <Counter />}
-        {pageSelected === 'Login' && <Login />}
+        {pageSelected === 'Login' && <Login setPageSelected = { setPageSelected } />}
         
       
     </div>

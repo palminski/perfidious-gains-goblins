@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
+import { Journal } from '../Journal';
 
 export function Login(props) {
   const [formState, setFormState] = useState({ username: '', password: '' });
@@ -13,9 +14,10 @@ export function Login(props) {
       const mutationResponse = await login({
         variables: { username: formState.username, password: formState.password },
       });
-      console.log(mutationResponse);
+
       const token = mutationResponse.data.loginUser.token;
       Auth.login(token);
+      props.setPageSelected("Journal");
     } catch (e) {
       console.log(e);
     }
