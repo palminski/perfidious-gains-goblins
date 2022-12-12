@@ -41,9 +41,7 @@ const startApolloServer = async(typeDefs,resolvers) => {
  |||                                                 |||
 =|||=================================================|||=
  |||                                                 |||
-
             API Server Setup Successful!
-
     Test GraphQL at http://localhost:${PORT}${server.graphqlPath}
     
  |||                                                 |||
