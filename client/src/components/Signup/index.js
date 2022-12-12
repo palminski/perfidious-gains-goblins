@@ -33,12 +33,12 @@ export function Signup(props) {
         <h2>Signup</h2>
         <form onSubmit={handleFormSubmit}>
           <div className="flex-row space-between my-2">
-            <label htmlFor="userName">Username: </label>
+            <label htmlFor="username">Username: </label>
             <input
               placeholder="Username"
-              name="userName"
-              type="userName"
-              id="userName"
+              name="username"
+              type="username"
+              id="username"
               onChange={handleChange}
             />
           </div>
