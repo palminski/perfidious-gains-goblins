@@ -17,7 +17,6 @@
 .active-tab{
     background-color: rgb(90, 48, 94);
     
-    
 }
 .inactive-tab{
     background-color: rgb(99, 99, 99);
@@ -32,11 +31,12 @@
     background-color: rgb(90, 48, 94);
     list-style: none;
     list-style-position: inside;
-    border-radius: 0 25px 25px 15px;
+    border-radius: 0 25px 25px 0px;
     /* important prevents this from being overwritten by bootstrap */
     padding-left: 0 !important;
     padding-top: 15px; 
     padding-bottom: 15px;
+    margin-bottom: 0;
 }
 .journal-list-item{
     transition-duration: 0.5s;
@@ -99,4 +99,22 @@
 .stats{
     background-color: rgb(90, 48, 94);
     border-radius: 0 25px 25px 0;
+}
+
+.add-button{
+    display: inline-block;
+    align-items: left;
+    color: white;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    border-radius: 0px 0px 25px 25px;
+    padding: 10px;
+    padding-top: 0px;
+    transition-duration: 0.5s;
+}
+.add-button:hover{
+    padding-top: 25px;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    
 }

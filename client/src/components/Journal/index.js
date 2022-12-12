@@ -92,6 +92,11 @@ export function Journal(props) {
                         </li>
                     </ul>
                 }
+                <div className="tab-container">
+                    <h1 className="add-button" onClick={() => toggleModal()}>Add {tabSelected === "Excersizes" ? 'Excersize' : 'Stat'}</h1>
+                </div>
+                
+
 
                 {modalOpen &&
                     <EditModal onClose={toggleModal}/>
