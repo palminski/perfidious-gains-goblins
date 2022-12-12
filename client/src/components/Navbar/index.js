@@ -18,7 +18,10 @@ export function Navbar(props) {
                 <li><a className={(pageSelected==='Signup') ? 'current-navigation-link' : "navigation-link"} href="#signup" onClick={() => setPageSelected('Signup')}>Signup</a></li>
                 <li><a className={(pageSelected==='Counter') ? 'current-navigation-link' : "navigation-link"} href="#counter" onClick={() => setPageSelected('Counter')}>Test Redux</a></li>
                 <li><a className={(pageSelected==='Login') ? 'current-navigation-link' : "navigation-link"} href="#login" onClick={() => setPageSelected('Login')}>Login</a></li>
-                <li><a className={(pageSelected==='Logout') ? 'current-navigation-link' : "navigation-link"} href='/' onClick={() => Auth.logout()}> Logout </a></li>
+                <li><a className={(pageSelected==='Logout') ? 'current-navigation-link' : "navigation-link"} href='/' onClick={() => {
+                    Auth.logout();
+                    setPageSelected('Community');
+                    }} > Logout </a></li>
             </ul>
            
             
