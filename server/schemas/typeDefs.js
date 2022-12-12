@@ -27,14 +27,21 @@ const typeDefs = gql`
         reps: Int
         sets: Int
     }
+
+
+
     type Auth {
         token: ID
         user: User
     }
+
+
+
     type Query {
         users: [User]
         posts: [Post]
     }
+    
     type Mutation {
         addUser(username: String!, password: String!): Auth
         addPost(createdBy: String!, postTitle: String!, postText: String!): Post
