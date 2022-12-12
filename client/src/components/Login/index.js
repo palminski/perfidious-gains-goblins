@@ -13,7 +13,8 @@ export function Login(props) {
       const mutationResponse = await login({
         variables: { username: formState.username, password: formState.password },
       });
-      const token = mutationResponse.data.login.token;
+      console.log(mutationResponse);
+      const token = mutationResponse.data.loginUser.token;
       Auth.login(token);
     } catch (e) {
       console.log(e);
