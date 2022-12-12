@@ -36,7 +36,7 @@
     /* important prevents this from being overwritten by bootstrap */
     padding-left: 0 !important;
     padding-top: 15px; 
-    padding-bottom: 15px; 
+    padding-bottom: 15px;
 }
 .journal-list-item{
     transition-duration: 0.5s;
@@ -48,11 +48,45 @@
     text-align: left;
     padding: 20px;
     border-radius: 0 25px 25px 0;
+    display: flex;
+    justify-content: space-between;
     /* Animation */
     animation-name: grow-down;
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
 }
+
+.buttons button{
+    color: white;
+    border-color: white ;
+    padding: 0 10px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: rgba(151, 105, 44, 0);
+    transition-duration: 0.5s;
+}
+.edit-button:hover {
+    background-color: rgb(12, 96, 110);
+    border-color: rgb(255, 255, 255);
+}
+.delete-button:hover {
+    background-color: rgb(126, 21, 21);
+    border-color: rgb(255, 255, 255);
+}
+
+.hidden-button {
+    margin-left: 15px;
+}
+
+.journal-list-item .hidden-button {
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+.journal-list-item:hover .hidden-button {
+    visibility: visible;
+    opacity: 1;
+}
+
 .journal-list-item:nth-child(even){
     background-color: rgb(99, 99, 99);
 }
