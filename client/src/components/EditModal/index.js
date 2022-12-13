@@ -3,12 +3,25 @@ import { useState } from 'react';
 
 import {useMutation, useQuery} from '@apollo/client';
 import { ADD_EXCERSIZE } from '../../utils/mutations';
-
+import { QUERY_ME } from '../../utils/queries';
 
 function EditModal({onClose}) {
     const [formState, setFormState] = useState({});
 
-    const [addExcersize] = useMutation(ADD_EXCERSIZE);
+    const [addExcersize] = useMutation(ADD_EXCERSIZE, {
+        update(cache, {data: {addExcersize}}) {
+            try {
+                const {me} = cache.readQuery({query: QUERY_ME});
+                console.log(me);
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: {me: {...me, excersizes: addExcersize.excersizes}}
+                });
+              } catch (error) {
+                console.log(error);
+              }
+        }
+    });
 
     function handleFormChange(e){
         setFormState({...formState, [e.target.name]:e.target.value});
@@ -22,6 +35,7 @@ function EditModal({onClose}) {
         formState.reps = parseInt(formState.reps);
         console.log(formState);
         try {
+            onClose();
             await addExcersize({
                 variables: formState
             });

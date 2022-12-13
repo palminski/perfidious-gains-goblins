@@ -69,7 +69,6 @@ const resolvers = {
             const user = await User.deleteOne({_id: _id});
             return user;
         },
-        //This will be updated with login context in the future.
         addExcersize: async(parent, {excersize, amount, units, sets, reps }, context) => {
             console.log('add Excersize');
             if (context.user) {
@@ -83,6 +82,20 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in to add an excersize');
         },
+        deleteExcersize: async(parent,{excersizeId}, context) => {
+            console.log('remove Excersize');
+            if (context.user) {
+                
+                console.log(excersizeId)
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {excersizes: {_id: excersizeId}}},
+                    {new:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to add an excersize');
+        }
     },
     //Field Resolvers
     User: {

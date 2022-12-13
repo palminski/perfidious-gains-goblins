@@ -20,6 +20,7 @@ export const QUERY_ME = gql`
         _id
         username
         excersizes {
+            _id
             excersize
             amount
             units
