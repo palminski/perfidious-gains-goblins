@@ -44,6 +44,7 @@ const typeDefs = gql`
         addPost(postTitle: String!, postText: String!): Post
         addComment(postId: ID!, createdBy: String!, commentText: String!): Post
         addExcersize(excersize: String!, amount: Float!, units: String!, reps: Int, sets: Int): User
+        deleteExcersize(excersizeId: ID!): User
         deleteUser(_id: ID!): User
         loginUser(username: String!, password: String!): Auth
     }
