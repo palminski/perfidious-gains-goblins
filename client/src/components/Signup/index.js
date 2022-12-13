@@ -3,20 +3,26 @@ import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER} from '../../utils/mutations';
 
+
 export function Signup(props) {
     const [formState, setFormState] = useState({ username: '', password: '' });
-    const [addUser] = useMutation(ADD_USER);
+    const [addUser, { error }] = useMutation(ADD_USER);
   
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-      const mutationResponse = await addUser({
-        variables: {
-          username: formState.username,
-          password: formState.password,
-        },
-      });
-      const token = mutationResponse.data.addUser.token;
-      Auth.login(token);
+      try {
+        const mutationResponse = await addUser({
+          variables: {
+            username: formState.username,
+            password: formState.password,
+          },
+        });
+        const token = mutationResponse.data.addUser.token;
+        Auth.login(token);
+        props.setPageSelected("Journal");
+      } catch (e) {
+        console.log(e);
+      }
     };
   
     const handleChange = (event) => {
@@ -52,6 +58,11 @@ export function Signup(props) {
               onChange={handleChange}
             />
           </div>
+          {error ? (
+            <div>
+              <p className='error-text'>Password should be at least 8 characters</p>
+            </div>
+          ) : null}
           <div className="flex-row flex-end">
             <button type="submit">Submit</button>
           </div>

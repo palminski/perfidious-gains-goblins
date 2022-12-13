@@ -35,4 +35,26 @@ code {
   animation-timing-function: ease-out;
 }
 
+.modalHeader {
+
+  color: white;
+  background-color: rgba(102, 51, 153, 1);
+}
+
+.modalBody {
+  font-size: xx-large;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#postTitle {
+  font-size: x-large;
+ 
+}
+
+#postText {
+  font-size: x-large;
+  
+}
+
 
