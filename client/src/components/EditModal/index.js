@@ -1,4 +1,4 @@
-import './modal.css'
+import '../style.css'
 import { useState } from 'react';
 
 function EditModal({onClose}) {
