@@ -11,6 +11,7 @@ const resolvers = {
             return Post.find()
         },
         me: async (parent, args, context) => {
+            console.log('Get Me');
             if (context.user) {
                 const userData = await User.findOne({_id: context.user._id})
                 return userData
@@ -69,8 +70,10 @@ const resolvers = {
             return user;
         },
         //This will be updated with login context in the future.
-        addExcersize: async(parent, {excersize, amount, units, reps, sets}, context) => {
+        addExcersize: async(parent, {excersize, amount, units, sets, reps }, context) => {
+            console.log('add Excersize');
             if (context.user) {
+                console.log(context.user);
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
                     {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},

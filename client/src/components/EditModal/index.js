@@ -17,13 +17,18 @@ function EditModal({onClose}) {
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
         console.log(formState);
+        formState.amount = parseFloat(formState.amount);
+        formState.sets = parseInt(formState.sets);
+        formState.reps = parseInt(formState.reps);
+        console.log(formState);
         try {
             await addExcersize({
-                variables: {formState}
+                variables: formState
             });
             
         }
         catch (error) {
+            console.log("could not add user")
             console.error(error);
         }
 
