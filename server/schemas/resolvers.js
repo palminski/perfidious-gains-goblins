@@ -10,6 +10,13 @@ const resolvers = {
         posts: async() => {
             return Post.find()
         },
+        me: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({_id: context.user._id})
+                return userData
+            }
+            throw new AuthenticationError('Not Logged In!');
+        }
     },
     Mutation: {
         addUser: async(parent, args) => {
@@ -62,13 +69,16 @@ const resolvers = {
             return user;
         },
         //This will be updated with login context in the future.
-        addExcersize: async(parent, {userId, excersize, ammount, units, reps, sets}) => {
-            const updatedUser = await User.findOneAndUpdate(
-                {_id: userId},
-                {$push: {excersizes: {excersize: excersize, ammount:ammount, units:units, reps:reps, sets:sets}}},
-                {new:true, runValidators:true}
-            );
-            return updatedUser;
+        addExcersize: async(parent, {excersize, amount, units, reps, sets}, context) => {
+            if (context.user) {
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                    {new:true, runValidators:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to add an excersize');
         },
     },
     //Field Resolvers

@@ -1,16 +1,32 @@
 import './modal.css'
 import { useState } from 'react';
 
+import {useMutation, useQuery} from '@apollo/client';
+import { ADD_EXCERSIZE } from '../../utils/mutations';
+
+
 function EditModal({onClose}) {
     const [formState, setFormState] = useState({});
+
+    const [addExcersize] = useMutation(ADD_EXCERSIZE);
 
     function handleFormChange(e){
         setFormState({...formState, [e.target.name]:e.target.value});
     }
 
-    function handleFormSubmit(e){
+    const handleFormSubmit = async (e) =>{
         e.preventDefault();
         console.log(formState);
+        try {
+            await addExcersize({
+                variables: {formState}
+            });
+            
+        }
+        catch (error) {
+            console.error(error);
+        }
+
     }
 
     return (
@@ -20,8 +36,8 @@ function EditModal({onClose}) {
                     <h2>Edit Excersize</h2>
                     
                     <form onSubmit={handleFormSubmit}>
-                        <label htmlFor="excersize-name">Excersize: </label>
-                        <input type="text" id="excersize-name" name="excersize-name" placeholder='Excersize Name' onChange={handleFormChange}></input>
+                        <label htmlFor="excersize">Excersize: </label>
+                        <input type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange}></input>
                         <br/>
                         <label htmlFor="amount">Amount: </label>
                         <input type="text" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange}></input>

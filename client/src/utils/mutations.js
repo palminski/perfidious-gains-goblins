@@ -33,3 +33,11 @@ export const ADD_POST = gql`
 }
 `
 
+export const ADD_EXCERSIZE = gql`
+mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
+    addExcersize( excersize: $excersize, amount: $amount, units: $units, reps: $reps, sets: $sets) {
+    username  
+    }
+  }
+`
+
