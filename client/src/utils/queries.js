@@ -14,3 +14,18 @@ export const QUERY_USER = gql`
     }
    }
 `
+export const QUERY_ME = gql`
+   {
+    me {
+        _id
+        username
+        excersizes {
+            excersize
+            amount
+            units
+            reps
+            sets
+        }
+    }
+   }
+`

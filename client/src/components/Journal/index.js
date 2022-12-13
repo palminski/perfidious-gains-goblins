@@ -2,10 +2,23 @@ import "./journal.css"
 import {useState} from 'react';
 import EditModal from "../EditModal";
 
+import {useMutation, useQuery} from '@apollo/client';
+import { QUERY_ME } from "../../utils/queries";
+import auth from "../../utils/auth";
+
+
 export function Journal(props) {
     //set up states
     const [tabSelected, setTabSelected] = useState("Excersizes");
     const [modalOpen, setModalOpen] = useState(false);
+
+    //set up data Queries
+    const {loading, data} = useQuery(QUERY_ME);
+    console.log('<><><><><><><><><>');
+    console.log(data);
+    console.log('<><><><><><><><><>');
+    const excersizes = (data?.me.excersizes);
+    console.log(excersizes)
 
     //Modal Function
     const toggleModal = () => {
@@ -19,9 +32,9 @@ export function Journal(props) {
             document.body.style.height = "auto";
         };
         setModalOpen(!modalOpen);
-
-
     }
+
+    
 
     return (
         <div className="grow-in">
@@ -36,34 +49,16 @@ export function Journal(props) {
                 {tabSelected === "Excersizes" &&
                 
                     <ul className="journal-list">
-                        <li className="journal-list-item">
-                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                        <li className="journal-list-item">
-                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                        <li className="journal-list-item">
-                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                        <li className="journal-list-item">
-                            <p>{"Bench Press"} - {180} {'lbs'} - {5} sets of {5}</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
+                        
+                        {excersizes && excersizes.map(excersize => (
+                            <li className="journal-list-item">
+                                <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
+                                <div className="buttons">
+                                    <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                    <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                                </div>
+                            </li>
+                        ))}
                     </ul>
                 }
 
