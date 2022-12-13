@@ -22,31 +22,28 @@ const typeDefs = gql`
     type Excersize {
         _id: ID
         excersize: String
-        ammount: Float
+        amount: Float
         units: String
         reps: Int
         sets: Int
     }
-
-
 
     type Auth {
         token: ID
         user: User
     }
 
-
-
     type Query {
         users: [User]
         posts: [Post]
+        me: User
     }
     
     type Mutation {
         addUser(username: String!, password: String!): Auth
         addPost(postTitle: String!, postText: String!): Post
         addComment(postId: ID!, createdBy: String!, commentText: String!): Post
-        addExcersize(userId: ID!, excersize: String!, ammount: Float!, units: String!, reps: Int!, sets: Int!): User
+        addExcersize(excersize: String!, amount: Float!, units: String!, reps: Int, sets: Int): User
         deleteUser(_id: ID!): User
         loginUser(username: String!, password: String!): Auth
     }
