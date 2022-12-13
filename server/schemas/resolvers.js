@@ -35,14 +35,19 @@ const resolvers = {
 
             return { token, user }
         },
-        addPost: async(parent, args) => {
-            const post = await Post.create(args);
-            let numberOfPosts = await Post.collection.countDocuments();
-            if (numberOfPosts > 5) {
-                console.log(`there are now ${numberOfPosts} posts`);
-                //This is where we can delete old posts when new ones show up
-            }
-            return post;
+        addPost: async(parent, {postTitle, postText}, context) => {
+            if (context.user) {
+                const post = await Post.create({postTitle, postText, createdBy:context.user.username}); 
+                let numberOfPosts = await Post.collection.countDocuments();
+                if (numberOfPosts > 5) {
+                    console.log(`there are now ${numberOfPosts} posts`);
+                    //This is where we can delete old posts when new ones show up
+                }
+                return post;
+            } 
+            throw new AuthenticationError('You need to be logged in to make a post!')
+            
+        
         },
         addComment: async(parent, {postId, commentText, createdBy}) => {
             const updatedPost = await Post.findOneAndUpdate(
