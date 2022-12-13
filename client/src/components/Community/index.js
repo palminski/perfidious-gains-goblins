@@ -1,6 +1,10 @@
-import {Form, FormGroup, Input, Label, Button, Container, Row, Col} from 'reactstrap';
+import React, { useState } from'react';
+import {Form, FormGroup, Input, Label, Button, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 export function Community(props) {
+  const [modal, setModal] = useState(false);
+
+  const toggle = () => setModal(!modal);
     return (
       <Container>
         <Row>
@@ -9,10 +13,16 @@ export function Community(props) {
         </Col>
         </Row>
         <Row>
-          <Col className="bg-light border" md={{ offset: 3, size: 6 }} sm="12">
-            <Form className="m-5 p-5">
+          <Col md={{ offset: 3, size: 6 }} sm="12">
+            <Button color='dark' onClick={toggle}>
+              Create Post
+            </Button>
+            <Modal isOpen={modal} toggle={toggle} sm-fullscreen>
+            <ModalHeader className='modalHeader' toggle={toggle}>Create a post!</ModalHeader>
+            <ModalBody className='modalBody'>
+            <Form className='m-5 p-5'>
               <FormGroup>
-                <Label className="m-0" for="postTitle">
+                <Label for="postTitle">
                   Post Title
                 </Label>
                 <Input
@@ -26,8 +36,10 @@ export function Community(props) {
                 <Label for="postText">Post</Label>
                 <Input id="postText" name="postText" type="textarea" />
               </FormGroup>
-              <Button>Submit</Button>
+              <Button color='primary'>Submit</Button>
             </Form>
+            </ModalBody>
+            </Modal> 
           </Col>
         </Row>
       </Container>
