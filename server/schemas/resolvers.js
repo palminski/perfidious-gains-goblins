@@ -56,10 +56,10 @@ const resolvers = {
             
         
         },
-        addComment: async(parent, {postId, commentText, createdBy}) => {
+        addComment: async(parent, {postId, commentText}, context) => {
             const updatedPost = await Post.findOneAndUpdate(
                 {_id: postId},
-                {$push: {comments: {commentText, createdBy}}},
+                {$push: {comments: {commentText, createdBy: context.user.username}}},
                 {new:true, runValidators: true}
             );
             return updatedPost;
