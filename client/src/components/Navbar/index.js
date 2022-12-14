@@ -8,7 +8,7 @@ export function Navbar(props) {
         <nav >
             
             <div className="flex-container">
-                <h1 className="home-button">PGG</h1>
+                <h1 className="home-button">Globo Gains</h1>
                 <h1 className="current-page grow-in" >{pageSelected}</h1>
             </div>
             <ul>

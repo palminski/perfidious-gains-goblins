@@ -45,7 +45,13 @@ export function Community(props) {
       <Container>
         <Row>
         <Col className='m-5'>
-          <h2>Blogs Will Go Here</h2>
+          {data?.me.posts.map((post) => {
+            return <div>
+              <h2>{post.postTitle}</h2>
+              <h3>{post.postText}</h3>
+              <h4>{post.createdBy}</h4>
+            </div>
+          })}
         </Col>
         </Row>
         <Row>
