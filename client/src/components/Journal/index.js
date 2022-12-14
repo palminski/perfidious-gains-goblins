@@ -9,9 +9,22 @@ import auth from "../../utils/auth";
 
 
 export function Journal(props) {
+
+    const defaultExcersizeInfo = {
+        _id:"",
+        excersize:"",
+        amount:"",
+        units:"",
+        reps:"",
+        sets:"",
+    };
+    
+
     //set up states
     const [tabSelected, setTabSelected] = useState("Excersizes");
     const [modalOpen, setModalOpen] = useState(false);
+    const [mode,setMode] = useState('Edit')
+    const [excersizeInfo, setExcersizeInfo] = useState(defaultExcersizeInfo);
 
     //set up data Queries
     const {loading, data} = useQuery(QUERY_ME);
@@ -47,6 +60,23 @@ export function Journal(props) {
         setModalOpen(!modalOpen);
     }
 
+    const handleEditExcersize = (excersize) => {
+        setExcersizeInfo({
+            _id:excersize._id,
+            excersize: excersize.excersize,
+            amount: excersize.amount,
+            units: excersize.units,
+            sets:excersize.sets,
+            reps: excersize.reps
+        })
+        toggleModal();
+    }
+
+    const handleAddExcersize = () => {
+        setExcersizeInfo(defaultExcersizeInfo);
+        toggleModal();
+    }
+
     const handleDeleteExcersize = async(excersizeId) => {
         console.log(excersizeId);
         try {
@@ -69,7 +99,7 @@ export function Journal(props) {
             <div className="container">
                 <div className="tab-container">
                     <h1 className={`tab ${(tabSelected === "Excersizes") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Excersizes")}>Excersizes</h1>
-                    <h1 className={`tab ${(tabSelected === "Stats") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Stats")}>Stats</h1>
+                    <h1 className={`tab ${(tabSelected === "Notes") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Notes")}>Notes</h1>
                 </div>
 
 
@@ -81,7 +111,7 @@ export function Journal(props) {
                             <li key={excersize._id} className="journal-list-item">
                                 <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
                                 <div className="buttons">
-                                    <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
+                                    <button className="hidden-button edit-button" onClick={() => {handleEditExcersize(excersize);setMode("Edit")}}>edit</button>
                                     <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>
                                 </div>
                             </li>
@@ -89,7 +119,7 @@ export function Journal(props) {
                     </ul>
                 }
 
-                {tabSelected === "Stats" &&
+                {tabSelected === "Notes" &&
                     <ul className="journal-list">
                         <li className="journal-list-item">
                             <p>Weight - 150lbs</p>
@@ -115,13 +145,13 @@ export function Journal(props) {
                     </ul>
                 }
                 <div className="tab-container">
-                    <h1 className="add-button" onClick={() => toggleModal()}>Add {tabSelected === "Excersizes" ? 'Excersize' : 'Stat'}</h1>
+                    <h1 className="add-button" onClick={() => {handleAddExcersize();setMode("Add")}}>Add {tabSelected === "Excersizes" ? 'Excersize' : 'Note'}</h1>
                 </div>
                 
 
 
                 {modalOpen &&
-                    <EditModal onClose={toggleModal}/>
+                    <EditModal onClose={toggleModal} tabSelected={tabSelected} mode={mode} excersizeInfo={excersizeInfo} />
                 }
 
 
