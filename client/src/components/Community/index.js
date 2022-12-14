@@ -2,7 +2,13 @@ import React, { useState } from'react';
 import {Form, FormGroup, Input, Label, Button, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 export function Community(props) {
+  // set formState to clear form on submit
+  // declare mutation here
   const [modal, setModal] = useState(false);
+
+  // handleFormSubmit to create the post
+
+  // handleChange to clear form on submit
 
   const toggle = () => setModal(!modal);
     return (
@@ -10,6 +16,7 @@ export function Community(props) {
         <Row>
         <Col className='m-5'>
           <h2>Blogs Will Go Here</h2>
+          {/* map blog posts here to display */}
         </Col>
         </Row>
         <Row>
