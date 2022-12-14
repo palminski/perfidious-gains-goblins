@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "develop": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" ",
     "install": "cd server && npm i && cd ../client && npm i"
@@ -13,5 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "react-app": "^1.1.2",
+    "react-checkbox": "^0.1.3"
   }
 }
