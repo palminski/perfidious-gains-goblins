@@ -4,7 +4,7 @@ import EditModal from "../EditModal";
 
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
-import { DELETE_EXCERSIZE } from "../../utils/mutations";
+import { DELETE_EXCERSIZE, DELETE_NOTE } from "../../utils/mutations";
 import auth from "../../utils/auth";
 
 
@@ -19,18 +19,20 @@ export function Journal(props) {
         sets:"",
     };
     
-
     //set up states
     const [tabSelected, setTabSelected] = useState("Excersizes");
     const [modalOpen, setModalOpen] = useState(false);
     const [mode,setMode] = useState('Edit')
+    
     const [excersizeInfo, setExcersizeInfo] = useState(defaultExcersizeInfo);
+    const [noteInfo, setNoteInfo] = useState({_id:"",noteText:""});
 
     //set up data Queries
     const {loading, data} = useQuery(QUERY_ME);
-    const excersizes = (data?.me.excersizes);  
+    const excersizes = (data?.me.excersizes); 
+    const notes = (data?.me.notes);  
 
-    //set Up Mutations
+    //===[set Up Mutations]=====================================
     const [deleteExcersize] = useMutation(DELETE_EXCERSIZE, {
         //Updates Cache so that excersizes delete from page imeiatly upon being deleted from database
         update(cache, {data: {deleteExcersize}}) {
@@ -46,7 +48,24 @@ export function Journal(props) {
               }
         }
     });
-    //Modal Function
+
+    const [deleteNote] = useMutation(DELETE_NOTE, {
+        //Updates Cache so that notes delete from page imeiatly upon being deleted from database
+        update(cache, {data: {deleteNote}}) {
+            try {
+                const {me} = cache.readQuery({query: QUERY_ME});
+                console.log(me);
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: {me: {...me, notes: deleteNote.notes}}
+                });
+              } catch (error) {
+                console.log(error);
+              }
+        }
+    });
+
+    //===[Set Up Functions]==========================================
     const toggleModal = () => {
         if (document.body.style.overflow !== 'hidden') {
             document.body.style.overflow = "hidden";
@@ -72,8 +91,20 @@ export function Journal(props) {
         toggleModal();
     }
 
+    const handleEditNote = (note) => {
+        setNoteInfo({
+            _id:note._id,
+            noteText: note.noteText
+        })
+        toggleModal();
+    }
+
     const handleAddExcersize = () => {
         setExcersizeInfo(defaultExcersizeInfo);
+        toggleModal();
+    }
+    const handleAddNote = () => {
+        setNoteInfo({_id:"",noteText:""});
         toggleModal();
     }
 
@@ -90,8 +121,21 @@ export function Journal(props) {
             console.error(error);
         }
     }
+    const handleDeleteNote = async(noteId) => {
+        console.log(noteId);
+        try {
+            await deleteNote({
+                variables: {noteId: noteId}
+            });
+            
+        }
+        catch (error) {
+            console.log("could not delete note")
+            console.error(error);
+        }
+    }
 
-    
+    //===[Page]================================================
 
     return (
         <div className="grow-in">
@@ -104,54 +148,49 @@ export function Journal(props) {
 
 
                 {tabSelected === "Excersizes" &&
-                
-                    <ul className="journal-list">
-                        
-                        {excersizes && excersizes.map(excersize => (
-                            <li key={excersize._id} className="journal-list-item">
-                                <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
-                                <div className="buttons">
-                                    <button className="hidden-button edit-button" onClick={() => {handleEditExcersize(excersize);setMode("Edit")}}>edit</button>
-                                    <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <>
+                        <ul className="journal-list">
+
+                            {excersizes && excersizes.map(excersize => (
+                                <li key={excersize._id} className="journal-list-item">
+                                    <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
+                                    <div className="buttons">
+                                        <button className="hidden-button edit-button" onClick={() => { handleEditExcersize(excersize); setMode("Edit") }}>edit</button>
+                                        <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="tab-container">
+                            <h1 className="add-button" onClick={() => { handleAddExcersize(); setMode("Add") }}>Add Excersize</h1>
+                        </div>
+                    </>
                 }
 
                 {tabSelected === "Notes" &&
-                    <ul className="journal-list">
-                        <li className="journal-list-item">
-                            <p>Weight - 150lbs</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                        <li className="journal-list-item">
-                            <p>Height - 5 foot 7</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                        <li className="journal-list-item">
-                            <p>One Rep Max for Bench - Laughable</p>
-                            <div className="buttons">
-                                <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
-                            </div>
-                        </li>
-                    </ul>
+                    <>
+                        <ul className="journal-list">
+                            {notes && notes.map(note => (
+                                <li key={note._id} className="journal-list-item">
+                                    <p>{note.noteText}</p>
+                                    <div className="buttons">
+                                        <button className="hidden-button edit-button" onClick={() => { handleEditNote(note); setMode("Edit") }}>edit</button>
+                                        <button className="hidden-button delete-button" onClick={() => handleDeleteNote(note._id)}>delete</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="tab-container">
+                            <h1 className="add-button" onClick={() => { handleAddNote(); setMode("Add") }}>Add Note</h1>
+                        </div>
+                    </>
                 }
-                <div className="tab-container">
-                    <h1 className="add-button" onClick={() => {handleAddExcersize();setMode("Add")}}>Add {tabSelected === "Excersizes" ? 'Excersize' : 'Note'}</h1>
-                </div>
+                
                 
 
 
                 {modalOpen &&
-                    <EditModal onClose={toggleModal} tabSelected={tabSelected} mode={mode} excersizeInfo={excersizeInfo} />
+                    <EditModal onClose={toggleModal} tabSelected={tabSelected} mode={mode} excersizeInfo={excersizeInfo} noteInfo={noteInfo} />
                 }
 
 

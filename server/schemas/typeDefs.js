@@ -5,6 +5,7 @@ const typeDefs = gql`
         _id: ID
         username: String
         excersizes: [Excersize]
+        notes: [Note]
         posts: [Post]
     }
     type Post {
@@ -27,6 +28,10 @@ const typeDefs = gql`
         reps: Int
         sets: Int
     }
+    type Note {
+        _id: ID
+        noteText: String
+    }
 
     type Auth {
         token: ID
@@ -47,6 +52,10 @@ const typeDefs = gql`
         addExcersize(excersize: String!, amount: Float!, units: String!, reps: Int, sets: Int): User
         editExcersize(excersizeId: ID!, excersize: String!, amount: Float!, units: String!, reps: Int!, sets: Int!): User
         deleteExcersize(excersizeId: ID!): User
+
+        addNote(noteText: String!): User
+        editNote(noteId: ID!,noteText: String!): User
+        deleteNote(noteId: ID!): User
 
         deleteUser(_id: ID!): User
         loginUser(username: String!, password: String!): Auth

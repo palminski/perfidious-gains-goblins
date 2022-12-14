@@ -78,4 +78,38 @@ mutation DeleteExcersize($excersizeId: ID!) {
     }
   }
 `
+export const ADD_NOTE = gql`
+mutation AddNote($noteText: String!) {
+    addNote(noteText: $noteText) {
+    username  
+    notes {
+        _id
+        noteText
+    }
+    }
+  }
+`
+export const EDIT_NOTE = gql`
+mutation EditNote($noteId: ID!, $noteText: String!) {
+    editNote( noteId: $noteId, noteText: $noteText) {
+    username  
+    notes {
+        _id
+        noteText
+    }
+    }
+  }
+  `
+
+export const DELETE_NOTE = gql`
+mutation DeleteNote($noteId: ID!) {
+    deleteNote(noteId: $noteId) {
+     username 
+     notes {
+        _id
+        noteText
+    }
+    }
+  }
+`
 
