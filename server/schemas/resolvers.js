@@ -82,6 +82,25 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in to add an excersize');
         },
+        editExcersize: async(parent, {excersizeId, excersize, amount, units, sets, reps }, context) => {
+            console.log('edit Excersize');
+            if (context.user) {
+                
+                console.log(excersizeId)
+                let updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {excersizes: {_id: excersizeId}}},
+                    {new:true}
+                );
+                updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                    {new:true, runValidators:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to add an excersize');
+        },
         deleteExcersize: async(parent,{excersizeId}, context) => {
             console.log('remove Excersize');
             if (context.user) {
