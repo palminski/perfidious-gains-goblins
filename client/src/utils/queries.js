@@ -20,11 +20,21 @@ export const QUERY_ME = gql`
         _id
         username
         excersizes {
+            _id
             excersize
             amount
             units
             reps
             sets
+        }
+        posts {
+            postTitle
+            postText
+            createdBy
+            comments {
+                commentText
+                createdBy
+            }
         }
     }
    }

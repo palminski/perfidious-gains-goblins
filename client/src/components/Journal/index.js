@@ -4,6 +4,7 @@ import EditModal from "../EditModal";
 
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
+import { DELETE_EXCERSIZE } from "../../utils/mutations";
 import auth from "../../utils/auth";
 
 
@@ -14,12 +15,24 @@ export function Journal(props) {
 
     //set up data Queries
     const {loading, data} = useQuery(QUERY_ME);
-    console.log('<><><><><><><><><>');
-    console.log(data);
-    console.log('<><><><><><><><><>');
-    const excersizes = (data?.me.excersizes);
-    console.log(excersizes)
+    const excersizes = (data?.me.excersizes);  
 
+    //set Up Mutations
+    const [deleteExcersize] = useMutation(DELETE_EXCERSIZE, {
+        //Updates Cache so that excersizes delete from page imeiatly upon being deleted from database
+        update(cache, {data: {deleteExcersize}}) {
+            try {
+                const {me} = cache.readQuery({query: QUERY_ME});
+                console.log(me);
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: {me: {...me, excersizes: deleteExcersize.excersizes}}
+                });
+              } catch (error) {
+                console.log(error);
+              }
+        }
+    });
     //Modal Function
     const toggleModal = () => {
         if (document.body.style.overflow !== 'hidden') {
@@ -32,6 +45,20 @@ export function Journal(props) {
             document.body.style.height = "auto";
         };
         setModalOpen(!modalOpen);
+    }
+
+    const handleDeleteExcersize = async(excersizeId) => {
+        console.log(excersizeId);
+        try {
+            await deleteExcersize({
+                variables: {excersizeId: excersizeId}
+            });
+            
+        }
+        catch (error) {
+            console.log("could not delete excersize")
+            console.error(error);
+        }
     }
 
     
@@ -51,11 +78,11 @@ export function Journal(props) {
                     <ul className="journal-list">
                         
                         {excersizes && excersizes.map(excersize => (
-                            <li className="journal-list-item">
+                            <li key={excersize._id} className="journal-list-item">
                                 <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
                                 <div className="buttons">
                                     <button className="hidden-button edit-button" onClick={() => toggleModal()}>edit</button>
-                                    <button className="hidden-button delete-button" onClick={() => toggleModal()}>delete</button>
+                                    <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>
                                 </div>
                             </li>
                         ))}
