@@ -14,7 +14,7 @@ const userSchema = new Schema(
         password: {
             type: String,
             required: true,
-            minlength: 7
+            minlength: 8
         },
         excersizes: [excersizeSchema],
         notes: [noteSchema]

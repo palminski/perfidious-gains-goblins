@@ -27,9 +27,20 @@ export const QUERY_ME = gql`
             reps
             sets
         }
+
         notes {
             _id
             noteText
+            }
+        posts {
+            postTitle
+            postText
+            createdBy
+            comments {
+                commentText
+                createdBy
+            }
+
         }
     }
    }
