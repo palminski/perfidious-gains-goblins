@@ -74,6 +74,9 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
     }
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
+        if (!formState.units) {
+            formState.units = "none";
+        }
         formState.amount = parseFloat(formState.amount);
         formState.sets = parseInt(formState.sets);
         formState.reps = parseInt(formState.reps);
@@ -143,7 +146,16 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
                         <input type="number" min="0" max="10000000000" step=".5" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.amount}></input>
 
                         <label htmlFor="units">Units: </label>
-                        <input required="true" type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.units}></input>
+                        {/* <input required="true" type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.units}></input> */}
+                        <select name='units' id="units" onChange={handleFormChange} defaultValue={excersizeInfo.units}>
+                            <option value=''></option>
+                            <option value="lbs">lbs</option>
+                            <option value="kilos">kilos</option>
+                            <option value="meters">meters</option>
+                            <option value="kilometers">kilometers</option>
+                            <option value="miles">miles</option>
+                            <option value="units">units</option>
+                        </select>
                         <br />
                         <label htmlFor="sets">Sets: </label>
                         <input type="number" min="0" max="500" id="sets" name="sets" placeholder='number of sets' onChange={handleFormChange} defaultValue={excersizeInfo.sets}></input>
