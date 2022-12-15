@@ -2,8 +2,9 @@ import React, { useState } from'react';
 import {Form, FormGroup, Input, Label, Button, Container, Row, Col, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import { useMutation, useQuery } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
+import { DELETE_POST } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-import { QUERY_ME } from '../../utils/queries'
+import { QUERY_POSTS } from '../../utils/queries'
 
 export function Community(props) {
   // set formState to clear form on submit
@@ -11,7 +12,21 @@ export function Community(props) {
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
   const [modal, setModal] = useState(false);
   const [addPost] = useMutation(ADD_POST);
-  const { loading, data } = useQuery(QUERY_ME);
+  const { loading, data } = useQuery(QUERY_POSTS);
+  const [deletePost] = useMutation(DELETE_POST, {
+    update(cache, {data: {deletePost}}) {
+      try {
+        const {posts} = cache.readQuery({query: DELETE_POST});
+        cache.writeQuery({
+          query: DELETE_POST,
+          data: {posts: {...posts, post: deletePost.post}}
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })
+ 
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +49,20 @@ export function Community(props) {
     setFormState({ ...formState, [name]: value });
   }
 
+  const handleDeletePost = async (postId) => {
+    console.log(postId)
+    try {
+      await deletePost({
+        variables: { 
+          postId: postId
+        }
+      });
+    } catch (error) {
+      console.log('error')
+    }
+  }
+
+
 
 
   // handleFormSubmit to create the post
@@ -45,11 +74,12 @@ export function Community(props) {
       <Container>
         <Row>
         <Col className='m-5'>
-          {data?.me.posts.map((post) => {
+          {data?.posts.map((post) => {
             return <div>
               <h2>{post.postTitle}</h2>
               <h3>{post.postText}</h3>
               <h4>{post.createdBy}</h4>
+              <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button>
             </div>
           })}
         </Col>

@@ -45,3 +45,19 @@ export const QUERY_ME = gql`
     }
    }
 `
+
+export const QUERY_POSTS = gql`
+     {
+        posts {
+            _id
+            postTitle
+            postText
+            createdBy
+            comments {
+                commentText
+                createdBy
+            }
+        }
+     }
+`
+        

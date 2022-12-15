@@ -32,6 +32,15 @@ export const ADD_POST = gql`
   }
 }
 `
+export const DELETE_POST = gql`
+  mutation Mutation($postId: String!) {
+    deletePost(postId: $postId) {
+      _id
+      postText
+      postTitle
+    }
+  }
+`;
 
 export const ADD_EXCERSIZE = gql`
 mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
