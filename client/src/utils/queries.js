@@ -27,6 +27,11 @@ export const QUERY_ME = gql`
             reps
             sets
         }
+
+        notes {
+            _id
+            noteText
+            }
         posts {
             postTitle
             postText
@@ -35,6 +40,7 @@ export const QUERY_ME = gql`
                 commentText
                 createdBy
             }
+
         }
     }
    }

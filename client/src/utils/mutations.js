@@ -48,6 +48,21 @@ mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $re
     }
   }
 `
+export const EDIT_EXCERSIZE = gql`
+mutation EditExcersize($excersizeId: ID! $excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
+    editExcersize( excersizeId: $excersizeId, excersize: $excersize, amount: $amount, units: $units, reps: $reps, sets: $sets) {
+    username  
+    excersizes {
+        _id
+        excersize
+        amount
+        units
+        reps
+        sets
+    }
+    }
+  }
+`
 export const DELETE_EXCERSIZE = gql`
 mutation DeleteExcersize($excersizeId: ID!) {
     deleteExcersize(excersizeId: $excersizeId) {
@@ -59,6 +74,40 @@ mutation DeleteExcersize($excersizeId: ID!) {
         units
         reps
         sets
+    }
+    }
+  }
+`
+export const ADD_NOTE = gql`
+mutation AddNote($noteText: String!) {
+    addNote(noteText: $noteText) {
+    username  
+    notes {
+        _id
+        noteText
+    }
+    }
+  }
+`
+export const EDIT_NOTE = gql`
+mutation EditNote($noteId: ID!, $noteText: String!) {
+    editNote( noteId: $noteId, noteText: $noteText) {
+    username  
+    notes {
+        _id
+        noteText
+    }
+    }
+  }
+  `
+
+export const DELETE_NOTE = gql`
+mutation DeleteNote($noteId: ID!) {
+    deleteNote(noteId: $noteId) {
+     username 
+     notes {
+        _id
+        noteText
     }
     }
   }
