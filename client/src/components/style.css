@@ -41,9 +41,6 @@
     box-shadow: 0 6px 6px 3px rgba(0, 0, 0, 0.473);
 }
 
-.modal-body input{
-    margin: 10px 10px;
-}
 
 .modal-body label{
     margin-left: 10px;
@@ -55,7 +52,18 @@
     padding: 5px 15px;
     border-color: rgb(0, 0, 0);
     border-radius: 25px 25px 25px 25px;
+    margin: 10px 10px;
 }
+
+.modal-body select{
+    font-size: large;
+    padding: 5px 15px;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+    border-radius: 25px 25px 25px 25px;
+    margin: 10px 10px;
+}
+
 
 .modal-body h2{
     padding: 10px 0;
