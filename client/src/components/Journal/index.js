@@ -1,4 +1,5 @@
 import "../style.css"
+
 import {useState} from 'react';
 import EditModal from "../EditModal";
 

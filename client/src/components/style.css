@@ -141,10 +141,10 @@
     /* Disables link */
     cursor: default;
     pointer-events: none;
-  }*/
+  }
+
 
 /* Journal Page Styling */
-
 .tab-container{
     display:flex
 }

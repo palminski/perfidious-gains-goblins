@@ -86,18 +86,34 @@ const resolvers = {
         editExcersize: async(parent, {excersizeId, excersize, amount, units, sets, reps }, context) => {
             console.log('edit Excersize');
             if (context.user) {
+                const user = await User.findById(context.user._id);
+                const index =user.excersizes.findIndex(exercize => exercize._id.toString() === excersizeId);
+                console.log(index, 91);
+
+                const replacer = { _id: excersizeId, excersize, amount, units, reps, sets };
+
+                user.excersizes.splice(index, 1, replacer);
+                await user.save();
+                return user;
+
                 
-                console.log(excersizeId)
-                let updatedUser = await User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {$pull: {excersizes: {_id: excersizeId}}},
-                    {new:true}
-                );
-                updatedUser = await User.findOneAndUpdate(
-                    {_id: context.user._id},
-                    {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
-                    {new:true, runValidators:true}
-                );
+                // let updatedUser = await User.findOneAndUpdate(
+                //     {_id: context.user._id},
+                //     {
+                //         $pull: {
+                //             excersizes: {
+                //                 _id: excersizeId
+                //             }
+                //         },
+                //         $push: {excersizes: {excersize, amount, units, reps, sets}}
+                //     },
+                //     {new:true}
+                // );
+                // updatedUser = await User.findOneAndUpdate(
+                //     {_id: context.user._id},
+                //     {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                //     {new:true, runValidators:true}
+                // );
                 return updatedUser;
             }
             throw new AuthenticationError('You need to be logged in to edit an excersize');
