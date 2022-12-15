@@ -81,10 +81,14 @@ export function Journal(props) {
     }
 
     const handleEditExcersize = (excersize) => {
+        let amountPlaceholder = excersize.amount
+        if (excersize.amount === 0){
+            amountPlaceholder = ""
+        }
         setExcersizeInfo({
             _id:excersize._id,
             excersize: excersize.excersize,
-            amount: excersize.amount,
+            amount: amountPlaceholder,
             units: excersize.units,
             sets:excersize.sets,
             reps: excersize.reps
@@ -154,7 +158,7 @@ export function Journal(props) {
 
                             {excersizes && excersizes.map(excersize => (
                                 <li key={excersize._id} className="journal-list-item">
-                                    <p>{excersize.excersize} - {excersize.amount} {excersize.units} - {excersize.sets} sets of {excersize.reps}</p>
+                                    <p>{excersize.excersize} {excersize.amount > 0 && <span>- {excersize.amount} {excersize.units}</span>} - {excersize.sets > 0 && <span>{excersize.sets} sets</span>} {excersize.reps > 0 && excersize.sets > 0 && <span> of </span>} {excersize.reps > 0 && <span>{excersize.reps} reps</span>}</p>
                                     <div className="buttons">
                                         <button className="hidden-button edit-button" onClick={() => { handleEditExcersize(excersize); setMode("Edit") }}>edit</button>
                                         <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>

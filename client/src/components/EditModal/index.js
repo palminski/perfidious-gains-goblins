@@ -77,6 +77,10 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
         formState.amount = parseFloat(formState.amount);
         formState.sets = parseInt(formState.sets);
         formState.reps = parseInt(formState.reps);
+        formState.amount = isNaN(formState.amount) ? 0 : formState.amount;
+        formState.sets = isNaN(formState.sets) ? 0 : formState.sets;
+        formState.reps = isNaN(formState.reps) ? 0 : formState.reps;
+        console.log(formState);
         try {
             onClose();
             if (mode === "Add") {
@@ -133,19 +137,19 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
 
                     <form onSubmit={handleFormSubmit}>
                         <label htmlFor="excersize">Excersize: </label>
-                        <input type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange} defaultValue={excersizeInfo.excersize}></input>
+                        <input required="true" type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange} defaultValue={excersizeInfo.excersize}></input>
                         <br />
                         <label htmlFor="amount">Amount: </label>
-                        <input type="text" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.amount}></input>
+                        <input type="number" min="0" max="10000000000" step=".5" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.amount}></input>
 
                         <label htmlFor="units">Units: </label>
-                        <input type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.units}></input>
+                        <input required="true" type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.units}></input>
                         <br />
                         <label htmlFor="sets">Sets: </label>
-                        <input type="text" id="sets" name="sets" placeholder='number of sets' onChange={handleFormChange} defaultValue={excersizeInfo.sets}></input>
+                        <input type="number" min="0" max="500" id="sets" name="sets" placeholder='number of sets' onChange={handleFormChange} defaultValue={excersizeInfo.sets}></input>
 
                         <label htmlFor="reps">Reps: </label>
-                        <input type="text" id="reps" name="reps" placeholder='number of reps' onChange={handleFormChange} defaultValue={excersizeInfo.reps}></input>
+                        <input type="number" min="0" max="500" id="reps" name="reps" placeholder='number of reps' onChange={handleFormChange} defaultValue={excersizeInfo.reps}></input>
                         <br />
                         <button>Save</button>
                         <button onClick={onClose}>Cancel</button>
@@ -159,7 +163,7 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
 
                     <form onSubmit={handleNoteSubmit}>
                         <label htmlFor="noteText">Note Text: </label>
-                        <input type="text" id="noteText" name="noteText" placeholder='Note Text Goes Here' onChange={handleNoteChange} defaultValue={noteInfo.noteText}></input>
+                        <input type="text" required="true" id="noteText" name="noteText" placeholder='Note Text Goes Here' onChange={handleNoteChange} defaultValue={noteInfo.noteText}></input>
                         
                         <button>Save</button>
                         <button onClick={onClose}>Cancel</button>
