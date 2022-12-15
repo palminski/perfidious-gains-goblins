@@ -6,6 +6,8 @@ import Auth from '../../utils/auth';
 import { QUERY_ME } from '../../utils/queries'
 
 export function Community(props) {
+  // set formState to clear form on submit
+  // declare mutation here
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
   const [modal, setModal] = useState(false);
   const [addPost] = useMutation(ADD_POST);
@@ -34,17 +36,21 @@ export function Community(props) {
 
 
 
+  // handleFormSubmit to create the post
+
+  // handleChange to clear form on submit
+
   const toggle = () => setModal(!modal);
     return (
       <Container>
         <Row>
         <Col className='m-5'>
-          {data?.me.posts.map((post)=>{
+          {data?.me.posts.map((post) => {
             return <div>
               <h2>{post.postTitle}</h2>
               <h3>{post.postText}</h3>
               <h4>{post.createdBy}</h4>
-              </div>
+            </div>
           })}
         </Col>
         </Row>
