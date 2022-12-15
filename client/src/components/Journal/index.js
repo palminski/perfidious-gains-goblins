@@ -35,7 +35,7 @@ export function Journal(props) {
 
     //===[set Up Mutations]=====================================
     const [deleteExcersize] = useMutation(DELETE_EXCERSIZE, {
-        //Updates Cache so that excersizes delete from page imeiatly upon being deleted from database
+        //Updates Cache so that excersizes delete from page imediatly upon being deleted from database
         update(cache, {data: {deleteExcersize}}) {
             try {
                 const {me} = cache.readQuery({query: QUERY_ME});
