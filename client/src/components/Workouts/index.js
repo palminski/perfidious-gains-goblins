@@ -1,4 +1,4 @@
-import "./workouts.css"
+import "../style.css"
 
 
 export function Workouts(props) {
