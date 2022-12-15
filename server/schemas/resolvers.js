@@ -67,9 +67,7 @@ const resolvers = {
             
         },
 
-            
-                
-
+        
 
         addComment: async(parent, {postId, commentText}, context) => {
             const updatedPost = await Post.findOneAndUpdate(
@@ -79,6 +77,9 @@ const resolvers = {
             );
             return updatedPost;
         },
+
+
+        
         deleteUser: async(parent, {_id}) => {
             const user = await User.deleteOne({_id: _id});
             return user;
