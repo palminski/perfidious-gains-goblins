@@ -42,6 +42,20 @@ export const DELETE_POST = gql`
   }
 `;
 
+export const ADD_COMMENT = gql`
+mutation AddComment($postId: String!, $commentText: String!) {
+  addComment(postId: $postId, commentText: $commentText) {
+    createdBy
+    postText
+    postTitle
+    comments {
+      commentText
+      createdBy
+    }
+  }
+}
+`
+
 export const ADD_EXCERSIZE = gql`
 mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
     addExcersize( excersize: $excersize, amount: $amount, units: $units, reps: $reps, sets: $sets) {
