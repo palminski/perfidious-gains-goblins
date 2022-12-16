@@ -1,9 +1,6 @@
-
-
 import React from 'react';
-// import ReactDOMClient from 'react-dom/client';
 import Select from 'react-select';
-import MuscleList from '../WorkoutModal';
+import WorkoutModal from '../WorkoutModal';
 import "./workout.css"
 
 const muscle = {
@@ -19,9 +16,9 @@ const muscle = {
 
 
 export function Workouts(props) {
-    // const [tabSelected, setTabSelected] = React.useState("Workouts");
-    const [modalOpen, setModalOpen] = React.useState("Workouts");
-
+    
+    //===[Modal Functions]========================
+    const [modalOpen, setModalOpen] = React.useState(false);
     const toggleModal = () => {
         if (document.body.style.overflow !== 'hidden') {
             document.body.style.overflow = "hidden";
@@ -32,53 +29,41 @@ export function Workouts(props) {
             document.body.style.overflow = "auto";
             document.body.style.height = "auto";
         };
-
         setModalOpen(!modalOpen);
-
-
     }
+    //===[Results]================================
+    //This will set up a state that we can set to hold the results of API request so that we can render it on page
+    const [results,setResults] = React.useState('Placeholder for data to be rendered');
+
     
-
-    function handleSubmit(e){
-        e.preventDefault();
-        
-    }
-
+    //===[Stuff to Render]========================
     return (
         <div>
-            <div className="workout-list-container">
-                <h2> Exercises </h2>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="workout-list">
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-3"></div>
-                                <div className="col-md-6">
-                                    <Select options={muscle} />
-                                </div>
-                                <div className="col-md-4"></div>
-                            </div>
-                        </div>
-                    </label>
-                    <br/>
-                    <button> Search </button>
-                    {/* <button onClick={onClose}> Cancel </button> */}
-                </form>
+
+            <h2> Exercises </h2>
+            <button onClick={toggleModal}>Find Excersises!</button>
+
+            <div className='results-list'>
+                <hr/>
+                <h1>{results}</h1>
             </div>
+
             <footer>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
                 <div id="root"></div>
             </footer>
-    
+
             {modalOpen &&
-                    <MuscleList onClose={toggleModal}/>
-                }
+                <WorkoutModal onClose={toggleModal} setResults={setResults} />
+            }
+
+
 
         </div>
     );
-    
-    
+
+
 }
 
 // const muscleList = {

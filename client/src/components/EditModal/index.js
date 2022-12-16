@@ -140,7 +140,7 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
 
                     <form onSubmit={handleFormSubmit}>
                         <label htmlFor="excersize">Excersize: </label>
-                        <input required="true" type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange} defaultValue={excersizeInfo.excersize}></input>
+                        <input required={true} type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange} defaultValue={excersizeInfo.excersize}></input>
                         <br />
                         <label htmlFor="amount">Amount: </label>
                         <input type="number" min="0" max="10000000000" step=".5" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.amount}></input>
