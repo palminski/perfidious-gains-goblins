@@ -28,10 +28,12 @@ const typeDefs = gql`
         reps: Int
         sets: Int
     }
+
     type Note {
         _id: ID
         noteText: String
     }
+
 
     type Auth {
         token: ID

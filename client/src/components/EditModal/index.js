@@ -133,8 +133,8 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
     return (
         <>
 
-
             {tabSelected === "Excersizes" && <div className="modal-background" onClick={onClose}>
+
                 <div className="modal-body container" onClick={(e) => e.stopPropagation()}>
                     <h2>{mode} {tabSelected}</h2>
 
