@@ -1,5 +1,5 @@
 
-import State from '';
+
 import React from 'react';
 // import ReactDOMClient from 'react-dom/client';
 import Select from 'react-select';
@@ -37,13 +37,11 @@ export function Workouts(props) {
 
 
     }
-    function handleFormChange(e){
-        setFormState({...formState, [e.target.name]:e.target.value});
-    }
+    
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log(formState);
+        
     }
 
     return (
@@ -95,9 +93,9 @@ export function Workouts(props) {
 
 
 
-const root = ReactDOM.renderRoot(document.getElementById('root'));
-const element = [muscle];
-root.render(element);
+// const root = ReactDOM.renderRoot(document.getElementById('root'));
+
+// root.render(element);
 
 
 
@@ -133,5 +131,5 @@ root.render(element);
     
 
 
-export default (Workouts, 'Workouts');
+// export default (Workouts, 'Workouts');
 

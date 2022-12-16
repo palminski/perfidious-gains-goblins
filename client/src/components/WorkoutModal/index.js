@@ -26,14 +26,14 @@ function MuscleList({onClose}) {
         { label: "triceps", value: 16 }
     ];
 
-    handleFormChange = (e) => {
-        setFormState({...formState, [e.target.name]:e.target.value});
-    }
+    // handleFormChange = (e) => {
+    //     setFormState({...formState, [e.target.name]:e.target.value});
+    // }
     
-    handleFormSubmit = (e) =>{
-        e.preventDefault();
-        console.log(formState);
-    }
+    // handleFormSubmit = (e) =>{
+    //     e.preventDefault();
+    //     console.log(formState);
+    // }
     class WorkoutModal extends React.Component {
         constructor(props) {
             super(props);
@@ -47,9 +47,9 @@ function MuscleList({onClose}) {
                     <div className="modal-body container"onClick={(e) => e.stopPropagation()}>
                         <h2> Exercises </h2>
                             
-                        <form onSubmit={handleFormSubmit(e)}>
+                        <form onSubmit={()=> console.log("hello")}>
                             <label htmlFor="workout-list">
-                                <select value={this.state.value} onChange={handleFormChange(e)}>
+                                <select value={this.state.value} onChange={() => console.log('heyo')}>
                                 <option value="abdominals">Abdominals</option>
                                 <option value="adductors">Adductors</option>
                                 <option value="biceps">Biceps</option>
@@ -85,7 +85,6 @@ function MuscleList({onClose}) {
 }
 
 
-export default (MuscleList, WorkoutModal);
 // }
 // // const TableRow = ({ data }) => <tr><td>{data.label}</td></tr>
 
@@ -137,7 +136,7 @@ export default (MuscleList, WorkoutModal);
 // // ReactDOMClient.hydrateRoot(<App />, document.getElementById('root'));
 
 
-// export default WorkoutModal;
+export default MuscleList;
 
 
 
