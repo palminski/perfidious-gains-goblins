@@ -175,7 +175,7 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
 
                     <form onSubmit={handleNoteSubmit}>
                         <label htmlFor="noteText">Note Text: </label>
-                        <input type="text" required="true" id="noteText" name="noteText" placeholder='Note Text Goes Here' onChange={handleNoteChange} defaultValue={noteInfo.noteText}></input>
+                        <input type="text" required={true} id="noteText" name="noteText" placeholder='Note Text Goes Here' onChange={handleNoteChange} defaultValue={noteInfo.noteText}></input>
                         
                         <button>Save</button>
                         <button onClick={onClose}>Cancel</button>
