@@ -5,51 +5,40 @@ import {useState} from 'react';
 // import Select from 'react-select';
 // import ReactDOM from 'react-dom/client';
 
-function MuscleList({onClose}) {
-    const [formState, setFormState] = useState({})
-    const muscle = [
-        { label: "abdominals", value: 1 },
-        { label: "abductors", value: 2 },
-        { label: "adductors", value: 3 },
-        { label: "biceps", value: 4 },
-        { label: "calves", value: 5 },
-        { label: "chest", value: 6 },
-        { label: "forearms", value: 7 },
-        { label: "glutes", value: 8 },
-        { label: "hamstrings", value: 9 },
-        { label: "lats", value: 10 },
-        { label: "lower_back", value: 11 },
-        { label: "middle_back", value: 12 },
-        { label: "neck", value: 13 },
-        { label: "quadriceps", value: 14 },
-        { label: "traps", value: 15 },
-        { label: "triceps", value: 16 }
-    ];
+function WorkoutModal({onClose, setResults}) {
+    const [formState, setFormState] = useState({
+        muscle: "abdominals"
+    })    
 
-    // handleFormChange = (e) => {
-    //     setFormState({...formState, [e.target.name]:e.target.value});
-    // }
-    
-    // handleFormSubmit = (e) =>{
-    //     e.preventDefault();
-    //     console.log(formState);
-    // }
-    class WorkoutModal extends React.Component {
-        constructor(props) {
-            super(props);
-            this.state = {value: muscle.label};
-        }
+    function handleFormChange(e){
+        setFormState({...formState, [e.target.name]:e.target.value});
         
-        render() {
-            return (
-            <>
-                <div className="modal-background" onClick={onClose}>
-                    <div className="modal-body container"onClick={(e) => e.stopPropagation()}>
-                        <h2> Exercises </h2>
-                            
-                        <form onSubmit={()=> console.log("hello")}>
-                            <label htmlFor="workout-list">
-                                <select value={this.state.value} onChange={() => console.log('heyo')}>
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        console.log('form submitted!');
+        console.log(formState);
+        console.log(`Value of ${formState.muscle}`);
+
+        //
+        // This section will be where we make requests to the 3rd Party API
+        //
+
+        //In future we will set results to an array or something containing data recieved from the API 
+        setResults(formState.muscle);
+        onClose();
+    }
+
+    return (
+        <>
+            <div className="modal-background" onClick={onClose}>
+                <div className="modal-body container" onClick={(e) => e.stopPropagation()}>
+                    <h2> Exercises </h2>
+
+                    <form onSubmit={handleFormSubmit}>
+                        <label htmlFor="workout-list">
+                            <select name='muscle' onChange={handleFormChange} defaultValue="abdominals">
                                 <option value="abdominals">Abdominals</option>
                                 <option value="adductors">Adductors</option>
                                 <option value="biceps">Biceps</option>
@@ -65,23 +54,20 @@ function MuscleList({onClose}) {
                                 <option value="quadriceps">Quadriceps</option>
                                 <option value="traps">Traps</option>
                                 <option value="triceps">Traps</option>
-                                </select>
-                            </label>
-                            <input type="submit" value="Submit" />
-                            <br/>
-                            <button onclick>
-                                Search 
-                            </button>
-                            <button onClick={onClose}> 
-                                Cancel 
-                            </button>
-                        </form>
-                    </div>
+                            </select>
+                        </label>
+                        <br />
+                        <button>
+                            Search
+                        </button>
+                        <button onClick={onClose}>Cancel</button>
+                    </form>
                 </div>
-            </>
-            );
-        }
-    }    
+            </div>
+        </>
+    );
+        
+       
 }
 
 
@@ -136,7 +122,7 @@ function MuscleList({onClose}) {
 // // ReactDOMClient.hydrateRoot(<App />, document.getElementById('root'));
 
 
-export default MuscleList;
+export default WorkoutModal;
 
 
 
