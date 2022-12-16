@@ -33,7 +33,7 @@ export const ADD_POST = gql`
 }
 `
 export const DELETE_POST = gql`
-  mutation Mutation($postId: String!) {
+  mutation DeletePost($postId: String!) {
     deletePost(postId: $postId) {
       _id
       postText

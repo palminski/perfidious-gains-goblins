@@ -8,6 +8,7 @@ import Auth from '../../utils/auth';
 import { QUERY_POSTS } from '../../utils/queries'
 
 export function Community(props) {
+  console.log('rerender')
   // set formState to clear form on submit
   // declare mutation here
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
@@ -15,20 +16,12 @@ export function Community(props) {
   const [modal, setModal] = useState(false);
   const [addPost] = useMutation(ADD_POST);
   const [addComment] = useMutation(ADD_COMMENT);
-  const { loading, data } = useQuery(QUERY_POSTS);
-  const [deletePost] = useMutation(DELETE_POST, {
-    update(cache, {data: {deletePost}}) {
-      try {
-        const {posts} = cache.readQuery({query: DELETE_POST});
-        cache.writeQuery({
-          query: DELETE_POST,
-          data: {posts: {...posts, post: deletePost.post}}
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  })
+  const { loading, data, refetch } = useQuery(QUERY_POSTS);
+  const postData = (data?.posts)
+  const [deletePost] = useMutation(DELETE_POST)
+
+
+  
  
 
   const handleFormSubmit = async (event) => {
@@ -42,6 +35,8 @@ export function Community(props) {
       });
       const post = mutationResponse.data.addPost.postTitle.postText;
       Auth.getToken(post);
+      refetch();
+      setModal(false);
     } catch (e) {
       console.log(e)
     }
@@ -60,18 +55,19 @@ export function Community(props) {
   const handleDeletePost = async (postId) => {
     console.log(postId)
     try {
-      await deletePost({
+       await deletePost({
         variables: { 
           postId: postId
-        }
-      });
+        }})
+        refetch();
     } catch (error) {
-      console.log('error')
+      console.log(error)
     }
   }
 
+
   const handleCommentSubmit = async (postId) => {
-    console.log(postId)
+
 
     try {
       const mutationResponse = await addComment({
@@ -82,7 +78,7 @@ export function Community(props) {
       });
       const comment = mutationResponse.data.addComment.createdBy.commentText;
       Auth.getToken(comment);
-      console.log(comment);
+  
     } catch (error) {
       console.log(error);
     }
@@ -93,17 +89,13 @@ export function Community(props) {
 
 
 
-  // handleFormSubmit to create the post
-
-  // handleChange to clear form on submit
   
   const toggle = () => setModal(!modal);
     return (
       <Container>
         <Row>
         <Col className='m-5'>
-          {data?.posts.map((post, index) => {
-            console.log(post)
+          {postData && postData.map((post, index) => {
             return <div key = {index}>
               <h2> Post Title: {post.postTitle}</h2>
               <h3>Post: {post.postText}</h3>
@@ -111,9 +103,7 @@ export function Community(props) {
               <h5>Comments</h5>
               {post.comments.map((comments, i) => (
                 <div key = {i}>
-                  
-                  <h6>{comments.commentText}</h6>
-                  <h7>By: {comments.createdBy}</h7>
+                  <h6><b> {comments.createdBy} </b> said: {comments.commentText}</h6>
                 </div>
               ))}
               
