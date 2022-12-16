@@ -15,7 +15,7 @@ function EditModal({onClose}) {
 
     return (
         <>
-        <div className="modal-background" onClick={onClose}>
+            <div className="modal-background" onClick={onClose}>
                 <div className="modal-body container" onClick={(e) => e.stopPropagation()}>
                     <h2>Edit Excersize</h2>
                     
