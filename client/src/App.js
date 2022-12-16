@@ -47,7 +47,7 @@ function App() {
         
         {pageSelected === 'Community' && <Community />}
         {pageSelected === 'Journal' && <Journal />}
-        {pageSelected === 'Signup' && <Signup />}
+        {pageSelected === 'Signup' && <Signup setPageSelected = { setPageSelected} />}
         {pageSelected === 'Workouts' && <Workouts />}
         {pageSelected === 'Counter' && <Counter />}
         {pageSelected === 'Login' && <Login setPageSelected = { setPageSelected } />}

@@ -10,6 +10,14 @@ const resolvers = {
         posts: async() => {
             return Post.find()
         },
+        me: async (parent, args, context) => {
+            console.log('Get Me');
+            if (context.user) {
+                const userData = await User.findOne({_id: context.user._id})
+                return userData
+            }
+            throw new AuthenticationError('Not Logged In!');
+        }
     },
     Mutation: {
         addUser: async(parent, args) => {
@@ -49,26 +57,141 @@ const resolvers = {
             
         
         },
-        addComment: async(parent, {postId, commentText, createdBy}) => {
+
+        deletePost: async(parent, {postId}, context) => {
+            if (context.user) {
+                const deletePost = await Post.deleteOne({_id: postId});
+                return deletePost;
+            }
+            throw new AuthenticationError('You need to be logged in to delete a post!')
+            
+        },
+
+        
+
+        addComment: async(parent, {postId, commentText}, context) => {
             const updatedPost = await Post.findOneAndUpdate(
                 {_id: postId},
-                {$push: {comments: {commentText, createdBy}}},
+                {$push: {comments: {commentText, createdBy: context.user.username}}},
                 {new:true, runValidators: true}
             );
             return updatedPost;
         },
+
+
+        
         deleteUser: async(parent, {_id}) => {
             const user = await User.deleteOne({_id: _id});
             return user;
         },
-        //This will be updated with login context in the future.
-        addExcersize: async(parent, {userId, excersize, ammount, units, reps, sets}) => {
-            const updatedUser = await User.findOneAndUpdate(
-                {_id: userId},
-                {$push: {excersizes: {excersize: excersize, ammount:ammount, units:units, reps:reps, sets:sets}}},
-                {new:true, runValidators:true}
-            );
-            return updatedUser;
+        //====[Resolvers for Journal Page==================================================================]
+        addExcersize: async(parent, {excersize, amount, units, sets, reps }, context) => {
+            console.log('add Excersize');
+            if (context.user) {
+                console.log(context.user);
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                    {new:true, runValidators:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to add an excersize');
+        },
+        editExcersize: async(parent, {excersizeId, excersize, amount, units, sets, reps }, context) => {
+            console.log('edit Excersize');
+            if (context.user) {
+                const user = await User.findById(context.user._id);
+                const index =user.excersizes.findIndex(exercize => exercize._id.toString() === excersizeId);
+                console.log(index, 91);
+
+                const replacer = { _id: excersizeId, excersize, amount, units, reps, sets };
+
+                user.excersizes.splice(index, 1, replacer);
+                await user.save();
+                return user;
+
+                
+                // let updatedUser = await User.findOneAndUpdate(
+                //     {_id: context.user._id},
+                //     {
+                //         $pull: {
+                //             excersizes: {
+                //                 _id: excersizeId
+                //             }
+                //         },
+                //         $push: {excersizes: {excersize, amount, units, reps, sets}}
+                //     },
+                //     {new:true}
+                // );
+                // updatedUser = await User.findOneAndUpdate(
+                //     {_id: context.user._id},
+                //     {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                //     {new:true, runValidators:true}
+                // );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to edit an excersize');
+        },
+        deleteExcersize: async(parent,{excersizeId}, context) => {
+            console.log('remove Excersize');
+            if (context.user) {
+                
+                console.log(excersizeId)
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {excersizes: {_id: excersizeId}}},
+                    {new:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to delete an excersize');
+        },
+        addNote: async(parent, {noteText}, context) => {
+            console.log('add Note');
+            if (context.user) {
+                console.log(context.user);
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {notes: {noteText}}},
+                    {new:true, runValidators:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to add a note');
+        },
+        editNote: async(parent, {noteId, noteText}, context) => {
+            console.log('edit Note');
+            if (context.user) {
+                
+                console.log(noteId)
+                let updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {notes: {_id: noteId}}},
+                    {new:true}
+                );
+                updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {notes: {noteText: noteText}}},
+                    {new:true, runValidators:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to edit a Note');
+        },
+        deleteNote: async(parent,{noteId}, context) => {
+            console.log('remove Note');
+            if (context.user) {
+                
+                console.log(noteId)
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {notes: {_id: noteId}}},
+                    {new:true}
+                );
+                return updatedUser;
+            }
+            throw new AuthenticationError('You need to be logged in to delete a note');
         },
     },
     //Field Resolvers

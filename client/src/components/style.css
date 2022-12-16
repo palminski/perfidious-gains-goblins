@@ -1,0 +1,275 @@
+/* Global Styling */
+
+/* Modal Stlying */
+
+@keyframes fade-in-modal-background {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes zoom-in-modal-body {
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+
+.modal-background {
+    animation-name: fade-in-modal-background;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+
+    background: rgba(0, 0, 0, 0.67);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    overflow: auto;
+    position: fixed;
+}
+
+.modal-body{
+    animation-name: zoom-in-modal-body;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    
+    padding: 10px;
+    border-radius: 25px 25px 25px 25px;
+    background: aliceblue;
+    position:fixed;
+    top: 10%;
+    bottom: 10%;
+
+    box-shadow: 0 6px 6px 3px rgba(0, 0, 0, 0.473);
+}
+
+
+.modal-body label{
+    margin-left: 10px;
+    font-size: larger;
+}
+
+.modal-body input{
+    font-size: large;
+    padding: 5px 15px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 25px 25px 25px 25px;
+    margin: 10px 10px;
+}
+
+.modal-body select{
+    font-size: large;
+    padding: 5px 15px;
+    border-color: rgb(0, 0, 0);
+    border-width: 2px;
+    border-radius: 25px 25px 25px 25px;
+    margin: 10px 10px;
+}
+
+
+.modal-body h2{
+    padding: 10px 0;
+    color: white;
+    margin-bottom: 0px;
+    border: 5px solid white;
+    border-bottom: 0;
+    border-radius: 25px 25px 0px 0px;
+    background-color: rgb(90, 48, 94);
+}
+
+.modal-body hr{
+    margin: 0;
+}
+
+.modal-body button{
+    margin: 10px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: rgba(151, 105, 44, 0);
+    transition-duration: 0.5s;
+    font-size: large;
+    padding: 0 10px;
+}
+.modal-body button:hover{
+   transform: scale(1.2);
+    color: white;
+    background-color:rgb(90, 48, 94);
+    
+}
+
+/* Nav Bar Stlying */
+
+  nav {
+    background-color: rgb(51, 51, 51);
+    margin-bottom: 15px;
+  }
+  nav h1{
+    padding: 10px 10px;
+    color: rgb(221, 221, 221);
+    /* text-align: left; */
+  }
+  .flex-container{
+    position: relative;
+  }
+  .home-button{
+    position: absolute;
+    left: 3px;
+  }
+  .current-page{
+  
+  }
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+    overflow: hidden;
+    background-color: rgb(90, 48, 94);
+  }
+  nav li {
+    float:left
+  }
+  .navigation-link{
+    display: block;
+    color: rgb(221, 221, 221);
+    transition-duration: 0.3s;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .navigation-link:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgb(51, 51, 51);
+    padding: 14px 23px;;
+  }
+  .current-navigation-link{
+    display: block;
+    color: rgb(255, 255, 255);
+    background-color: rgb(51, 51, 51);
+    padding: 14px 23px;;
+    transition-duration: 0.3s;
+    text-decoration: none;
+    text-align: center;
+    /* Disables link */
+    cursor: default;
+    pointer-events: none;
+  }
+
+
+/* Journal Page Styling */
+.tab-container{
+    display:flex
+}
+
+.tab{
+    transition-duration: 0.5s;
+    color: white;
+    display: inline-block;
+    align-items: left;
+    margin: 0 0px 0px 0px;
+    cursor: pointer;
+    border-radius: 25px 25px 0 0;
+    padding: 8px;
+}
+.active-tab{
+    background-color: rgb(90, 48, 94);
+    
+}
+.inactive-tab{
+    background-color: rgb(99, 99, 99);
+}
+.inactive-tab:hover{
+    background-color: rgb(90, 48, 94);
+}
+
+/* Excersizes */
+.journal-list{
+    transition-duration: 0.5s;
+    background-color: rgb(90, 48, 94);
+    list-style: none;
+    list-style-position: inside;
+    border-radius: 0 25px 25px 0px;
+    /* important prevents this from being overwritten by bootstrap */
+    padding-left: 0 !important;
+    padding-top: 15px; 
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
+.journal-list-item{
+    transition-duration: 0.5s;
+    color: white;
+    background-color: rgb(51, 51, 51);
+    /* display: inline-block; */
+    width: 95%;
+    font-size: 26px;
+    text-align: left;
+    padding: 20px;
+    border-radius: 0 25px 25px 0;
+    display: flex;
+    justify-content: space-between;
+    /* Animation */
+    animation-name: grow-down;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+
+.buttons button{
+    color: white;
+    border-color: white ;
+    padding: 0 10px;
+    border-radius: 25px 25px 25px 25px;
+    background-color: rgba(151, 105, 44, 0);
+    transition-duration: 0.5s;
+}
+.edit-button:hover {
+    background-color: rgb(12, 96, 110);
+    border-color: rgb(255, 255, 255);
+}
+.delete-button:hover {
+    background-color: rgb(126, 21, 21);
+    border-color: rgb(255, 255, 255);
+}
+
+.hidden-button {
+    margin-left: 15px;
+}
+
+.journal-list-item .hidden-button {
+    visibility: hidden;
+    opacity: 0;
+    transition-duration: 0.5s;
+}
+.journal-list-item:hover .hidden-button {
+    visibility: visible;
+    opacity: 1;
+}
+
+.journal-list-item:nth-child(even){
+    background-color: rgb(99, 99, 99);
+}
+.journal-list-item:hover{
+    width: 100%;
+    padding: 20px 50px
+}
+
+/* Stats */
+.stats{
+    background-color: rgb(90, 48, 94);
+    border-radius: 0 25px 25px 0;
+}
+
+.add-button{
+    display: inline-block;
+    align-items: left;
+    color: white;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    border-radius: 0px 0px 25px 25px;
+    padding: 10px;
+    padding-top: 0px;
+    transition-duration: 0.5s;
+}
+.add-button:hover{
+    padding-top: 25px;
+    background-color: rgb(90, 48, 94);
+    cursor: pointer;
+    
+}
+
+/* Workouts Page Styling*/

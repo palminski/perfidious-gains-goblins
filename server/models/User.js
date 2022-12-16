@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 const excersizeSchema = require('./Excersize');
+
+const noteSchema = require('./Notes');
+
+
 const userSchema = new Schema(
     {
         username: {
@@ -12,9 +16,12 @@ const userSchema = new Schema(
         password: {
             type: String,
             required: true,
-            minlength: 7
+            minlength: 8
         },
         excersizes: [excersizeSchema],
+
+        notes: [noteSchema]
+
     },
     {
         toJSON: {
