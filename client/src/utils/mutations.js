@@ -54,6 +54,16 @@ mutation AddComment($postId: String!, $commentText: String!) {
     }
   }
 }
+`;
+
+export const DELETE_COMMENT = gql`
+mutation deleteComment($postId: String!, $commentId: String!) {
+  deleteComment(postId: $postId, commentId: $commentId) {
+    comments {
+      _id
+    }
+  }
+}
 `
 
 export const ADD_EXCERSIZE = gql`

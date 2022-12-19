@@ -1,4 +1,5 @@
 import React from 'react';
+
 import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
 import "./workout.css"
