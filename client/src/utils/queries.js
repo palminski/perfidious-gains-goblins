@@ -33,10 +33,12 @@ export const QUERY_ME = gql`
             noteText
             }
         posts {
+            _id
             postTitle
             postText
             createdBy
             comments {
+                _id
                 commentText
                 createdBy
             }
@@ -54,6 +56,7 @@ export const QUERY_POSTS = gql`
             postText
             createdBy
             comments {
+                _id
                 commentText
                 createdBy
             }
