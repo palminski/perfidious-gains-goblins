@@ -78,8 +78,14 @@ const resolvers = {
             return updatedPost;
         },
 
+        deleteComment: async(parent, {commentId}, context) => {
+            if (context.user) {
+                const deleteComment = await Comment.deleteOne({_id: commentId});
+                return deleteComment;
+            }
+            throw new AuthenticationError('You need to be logged in to delete a comment!')
+        },
 
-        
         deleteUser: async(parent, {_id}) => {
             const user = await User.deleteOne({_id: _id});
             return user;
