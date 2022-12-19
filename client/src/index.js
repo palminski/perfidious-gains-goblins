@@ -5,6 +5,7 @@ import { store } from './utils/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { Workouts } from '.';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // testing out checkbox 
 
@@ -30,3 +31,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
