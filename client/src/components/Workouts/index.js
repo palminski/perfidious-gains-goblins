@@ -52,7 +52,7 @@ export function Workouts(props) {
             method: 'GET',
             url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle,
             headers: {
-                'X-Api-Key': '+x5KWFt82vHMdy+BPrBIbw==VMmRfElnZsH4wS9Q',
+                'X-Api-Key': process.env.REACT_APP_API_KEY,
             },
             contentType: 'application/json',
             success: function(result) {
