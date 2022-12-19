@@ -85,10 +85,13 @@ export function Community(props) {
     }
   }
 
-  const handleCommentDelete = async (commentId) => {
+  const handleCommentDelete = async (postId, commentId) => {
+    console.log(postId);
+    console.log(commentId);
     try {
       await deleteComment({
        variables: { 
+        postId: postId,
          commentId: commentId
        }})
        refetch();
@@ -116,7 +119,7 @@ export function Community(props) {
               {post.comments.map((comments, i) => (
                 <div key = {i}>
                   <h6><b> {comments.createdBy} </b> said: {comments.commentText}</h6>
-                  <Button color='danger' size='sm' onClick={() => handleCommentDelete(comments._id)}>Delete Comment</Button>
+                  <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button>
                 </div>
               ))}
               
