@@ -4,6 +4,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_POST } from '../../utils/mutations';
 import { ADD_COMMENT } from '../../utils/mutations';
 import { DELETE_POST } from '../../utils/mutations';
+import { DELETE_COMMENT } from '../../utils/mutations'
 import Auth from '../../utils/auth';
 import { QUERY_POSTS } from '../../utils/queries'
 
@@ -17,9 +18,9 @@ export function Community(props) {
   const [addPost] = useMutation(ADD_POST);
   const [addComment] = useMutation(ADD_COMMENT);
   const { loading, data, refetch } = useQuery(QUERY_POSTS);
-  const postData = (data?.posts)
-  const [deletePost] = useMutation(DELETE_POST)
-
+  const postData = (data?.posts);
+  const [deletePost] = useMutation(DELETE_POST);
+  const [deleteComment] = useMutation(DELETE_COMMENT);
 
   
  
@@ -84,13 +85,24 @@ export function Community(props) {
     }
   }
 
-  
+  const handleCommentDelete = async (commentId) => {
+    try {
+      await deleteComment({
+       variables: { 
+         commentId: commentId
+       }})
+       refetch();
+   } catch (error) {
+     console.log(error)
+   }
+  }
 
 
 
 
   
   const toggle = () => setModal(!modal);
+
     return (
       <Container>
         <Row>
@@ -104,6 +116,7 @@ export function Community(props) {
               {post.comments.map((comments, i) => (
                 <div key = {i}>
                   <h6><b> {comments.createdBy} </b> said: {comments.commentText}</h6>
+                  <Button color='danger' size='sm' onClick={() => handleCommentDelete(comments._id)}>Delete Comment</Button>
                 </div>
               ))}
               
