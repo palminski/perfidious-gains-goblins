@@ -11,7 +11,7 @@ import { Journal } from './components/Journal';
 import { Signup } from './components/Signup';
 import { Workouts } from './components/Workouts';
 import { Login } from './components/Login';
-import { Navbar } from './components/Navbar';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
