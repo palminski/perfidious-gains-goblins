@@ -5,7 +5,6 @@ import { store } from './utils/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { Workouts } from '.';
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // testing out checkbox 
 
