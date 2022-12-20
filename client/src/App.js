@@ -4,14 +4,15 @@ import { setContext } from '@apollo/client/link/context'
 
 
 import Auth from './utils/auth'
-import { LandingPage } from './components/LandingPage';
+import Landing from './components/LandingPage/index';
 import { Counter } from './components/counter/Counter';
 import { Community } from './components/Community';
 import { Journal } from './components/Journal';
 import { Signup } from './components/Signup';
 import { Workouts } from './components/Workouts';
-import { Login} from './components/Login';
+import { Login } from './components/Login';
 import { Navbar } from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css';
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 
@@ -38,7 +39,7 @@ const client = new ApolloClient({
 function App() {
 
   const [loggedInState, setLoggedInState] = useState(false);
-  const [pageSelected, setPageSelected] = useState('Community')
+  const [pageSelected, setPageSelected] = useState('Landing')
 
   useEffect(() => {
     const tokenInterval = setInterval(() => {
@@ -47,9 +48,9 @@ function App() {
         // setPageSelected('Journal');
       }  else {
         setLoggedInState(false);
-        setPageSelected('Login')
+        setPageSelected('Landing')
       } 
-    }, 5000)
+    }, 60000)
     if (Auth.loggedIn()) {
       setLoggedInState(true);
       // setPageSelected('Journal');
@@ -65,6 +66,7 @@ function App() {
       
         <Navbar pageSelected={pageSelected} setPageSelected={setPageSelected}/>
         
+        {pageSelected === 'Landing' && <Landing />}
         {pageSelected === 'Community' && <Community />}
         {pageSelected === 'Journal' && <Journal />}
         {pageSelected === 'Signup' && <Signup setPageSelected = { setPageSelected} />}
@@ -72,7 +74,7 @@ function App() {
         {pageSelected === 'Counter' && <Counter />}
         {pageSelected === 'Login' && <Login setPageSelected = { setPageSelected } />}
         
-      
+        <Footer />
     </div>
     </ApolloProvider>
   );

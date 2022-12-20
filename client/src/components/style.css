@@ -273,3 +273,43 @@
 }
 
 /* Workouts Page Styling*/
+
+/* Footer Styling */
+.footer {
+    background-color:rgb(90, 48, 94);
+    bottom: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important ;
+    position: fixed;
+    bottom: 0px;
+  }
+  .footer-copywright {
+    text-align: center !important;
+  }
+  
+  .footer-body {
+    text-align: center !important;
+  }
+  
+  @media (max-width: 767px) {
+    .footer{
+      padding-top: 0px;
+      position: relative;
+    }
+  
+    .footer-copywright {
+      text-align: center !important;
+    }
+  
+    .footer-body {
+      text-align: center !important;
+    }
+  }
+  
+  .footer h3 {
+    font-size: 1em;
+    color: #c5c6c7 !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+  }
+  

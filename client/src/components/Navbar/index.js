@@ -1,6 +1,5 @@
 import '../style.css'
 import Auth from '../../utils/auth'
-import icon from '../images/globo-icon.png'
 export function Navbar(props) {
     const {pageSelected, setPageSelected} = props
 
@@ -8,7 +7,6 @@ export function Navbar(props) {
         <nav >
             
             <div className="flex-container">
-                <img src={icon}></img>
                 <h1 className="home-button">Globo Gains</h1>
                 <h1 className="current-page grow-in" >{pageSelected}</h1>
             </div>
