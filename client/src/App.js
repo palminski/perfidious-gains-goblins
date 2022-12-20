@@ -4,7 +4,7 @@ import { setContext } from '@apollo/client/link/context'
 
 
 import Auth from './utils/auth'
-import Landing from './components/LandingPage/index';
+import Home from './components/LandingPage/index';
 import { Counter } from './components/counter/Counter';
 import { Community } from './components/Community';
 import { Journal } from './components/Journal';
@@ -39,7 +39,7 @@ const client = new ApolloClient({
 function App() {
 
   const [loggedInState, setLoggedInState] = useState(false);
-  const [pageSelected, setPageSelected] = useState('Landing')
+  const [pageSelected, setPageSelected] = useState('Home')
 
   useEffect(() => {
     const tokenInterval = setInterval(() => {
@@ -48,7 +48,7 @@ function App() {
         // setPageSelected('Journal');
       }  else {
         setLoggedInState(false);
-        setPageSelected('Landing')
+        setPageSelected('Home')
       } 
     }, 60000)
     if (Auth.loggedIn()) {
@@ -66,7 +66,7 @@ function App() {
       
         <Navbar pageSelected={pageSelected} setPageSelected={setPageSelected}/>
         
-        {pageSelected === 'Landing' && <Landing />}
+        {pageSelected === 'Home' && <Home/>}
         {pageSelected === 'Community' && <Community />}
         {pageSelected === 'Journal' && <Journal />}
         {pageSelected === 'Signup' && <Signup setPageSelected = { setPageSelected} />}
