@@ -23,8 +23,6 @@ function WorkoutModal({onClose, setResults, callApi}) {
         let apiResults = await callApi(formState.muscle);
 
 
-        console.log(apiResults, 1);
-
         //
         // This section will be where we make requests to the 3rd Party API
         //

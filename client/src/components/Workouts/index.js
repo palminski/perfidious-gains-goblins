@@ -9,7 +9,7 @@ console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 
 export function Workouts(props) {
     const [results, setResults] = useState([]);
-    const [workouts, setWorkouts] = useState([]);
+    // const [workouts, setWorkouts] = useState([]);
     // const [results, setResults] = useState(['']);
 
     
@@ -68,6 +68,30 @@ export function Workouts(props) {
                 console.error('Error: ', jqXHR.responseText);
             }
         });
+
+        // function show(result) {
+        //     let tab =
+        //     `<tr>
+        //         <th>Name</th>
+        //         <th>Type</th>
+        //         <th>Muscle</th>
+        //         <th>Equipment</th>
+        //         <th>Difficulty</th>
+        //         <th>Instructions</th>
+        //     </tr>`
+
+        //     // Loop all access rows
+        //     for (let r = {formState, result}) {
+        //         tab += `<tr>
+        //         <td>${r.name} </td>
+        //         <td>${r.type} </td>
+        //         <td>${r.muscle} </td>
+        //         <td>${r.equipment} </td>
+        //         <td>${r.difficulty} </td>
+        //         <td>${r.instructions} </td>
+        //         </tr>`;
+        //     }
+        // }
         // const [results, setResults] = React.useState([]);
 
         // function ListOfExercises() {
@@ -106,9 +130,14 @@ export function Workouts(props) {
             <h2> Exercises </h2>
             <button onClick={toggleModal}>Find Excersises!</button>
                 <ul className='results-list'>
-                    {results && results.map(exercise => (
+                    {results && results.map(Workouts() = (
                         <li>
-                            test
+                            ${results.name()}
+                            ${results.type()}
+                            ${results.muscle()}
+                            ${results.equipment()}
+                            ${results.difficulty()}
+                            ${results.instructions()}
                         </li>
                     ))}
                 </ul>
