@@ -8,6 +8,13 @@ import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_EXCERSIZE} from '../../utils/mutations';
 
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 
 
@@ -87,34 +94,45 @@ export function Workouts(props) {
 
         
         //===[Stuff to Render]========================
-    return (
-        <div>
-            <h2> Exercises </h2>
-            <button onClick={toggleModal}>Find Excersises!</button>
-            <hr></hr>
-                <ul className='results-list'>
-                    {results && results.map((exercise,index) => (
-                        <li key={index}>
-                            <h3>{exercise.name}</h3>
-                            <p>{exercise.instructions}</p>
-                            <button onClick={() => addToJournal(exercise.name)}
-                            
-                            >Add Excersize</button>
-                        </li>
-                    ))}
-                </ul>
-                <footer>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-                    <div id="root"></div>
-                </footer>
-
+    return  ( 
+        <section>
+            <Container fluid className="workout-section">
+                <Container>
+                    <h1 className="workout-title">
+                        <strong>Workout List!</strong>
+                    </h1>
+                    <Row style={{ justifyContent: "center", paddingBottom: "10px"}}>
+                        <Col md={2} className="workout-search">Exercises
+                            <button onClick={toggleModal}>Find Excersises!</button> 
+                        </Col>
+                        <Col md={6} className="workout-card">
+                        <>
+                            {results && results.map((exercise, index) =>
+                                     <Card style={{width: '36rem', height: '45rem', text: 'black'}}>
+                                     <Card.Header>{exercise.name}</Card.Header>
+                                     <Card.Body>
+                                         <Card.Text><b>Type:</b> {exercise.type}</Card.Text>
+                                         <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
+                                         <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
+                                         <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
+                                         <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
+                                         <Button variant="dark"onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
+                                     </Card.Body>
+                                 </Card>
+                            )}
+                       
+                        </>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
             {modalOpen &&
-                <WorkoutModal onClose={toggleModal} callApi={callApi}/>
-            }
-        </div>
-    )
-};
+            <WorkoutModal onClose={toggleModal} callApi={callApi}/>}  
+        </section>                                 
+    );
+
+}
+
 
 
 
