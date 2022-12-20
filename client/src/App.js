@@ -54,7 +54,7 @@ function App() {
       // setPageSelected('Journal');
     }  else {
       setLoggedInState(false);
-      // setPageSelected('Login')
+     
     } 
   })
 
