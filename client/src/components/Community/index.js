@@ -79,7 +79,7 @@ export function Community(props) {
       });
       const comment = mutationResponse.data.addComment.createdBy.commentText;
       Auth.getToken(comment);
-  
+      refetch();
     } catch (error) {
       console.log(error);
     }
