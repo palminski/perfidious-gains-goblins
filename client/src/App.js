@@ -4,6 +4,7 @@ import { setContext } from '@apollo/client/link/context'
 
 
 import Auth from './utils/auth'
+import { LandingPage } from './components/LandingPage';
 import { Counter } from './components/counter/Counter';
 import { Community } from './components/Community';
 import { Journal } from './components/Journal';
