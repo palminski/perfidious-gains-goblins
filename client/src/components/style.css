@@ -274,6 +274,7 @@
 
 /* Workouts Page Styling*/
 
+
 /* Footer Styling */
 .footer {
     background-color:rgb(90, 48, 94);
@@ -313,3 +314,7 @@
     margin-bottom: 0.5em !important;
   }
   
+/* Community Styles */
+#comment-box {
+    color: white;
+}
