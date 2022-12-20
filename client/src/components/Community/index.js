@@ -88,8 +88,6 @@ export function Community(props) {
 
 
   const handleCommentDelete = async (postId, commentId) => {
-    console.log(postId);
-    console.log(commentId);
     try {
       await deleteComment({
        variables: { 
@@ -102,7 +100,10 @@ export function Community(props) {
    }
   };
 
-
+const checkId = (post) => {
+  const profileId = Auth.getProfile()
+  return profileId.data.username === post.createdBy
+}
 
 
   
@@ -149,7 +150,7 @@ export function Community(props) {
               <h2 className='journal-list-item'> Post: {post.postTitle}</h2>
               <h3 className='journal-list-item'>{post.postText}</h3>
               <h4 className='journal-list-item'>Created By: {post.createdBy}</h4>
-              <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button>
+              {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''}
               <h5 className='journal-list' id='comment-box'>Comments</h5>
               </div>
               
@@ -157,9 +158,7 @@ export function Community(props) {
                 <div key = {i} className='comment-section'>
                   <h6> {comments.createdBy} said {comments.commentText}</h6>
                   <div className='buttons'>
-                  <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button>
-                  
-        
+                  {Auth.getProfile().data.username === comments.createdBy ? <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button> : ''}
                   </div>
                 </div>
                      
