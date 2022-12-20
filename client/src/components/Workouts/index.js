@@ -116,6 +116,7 @@ export function Workouts(props) {
                                          <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
                                          <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
                                          <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
+                                         <Button variant="dark"onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
                                      </Card.Body>
                                  </Card>
                             )}
