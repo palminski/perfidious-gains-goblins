@@ -47,7 +47,8 @@ export function Journal(props) {
               } catch (error) {
                 console.log(error);
               }
-        }
+        },
+        fetchPolicy:'network-only'
     });
 
     const [deleteNote] = useMutation(DELETE_NOTE, {
