@@ -20,16 +20,6 @@ function WorkoutModal({onClose, callApi}) {
         
         callApi(formState.muscle);
 
-<<<<<<< HEAD
-
-        //
-        // This section will be where we make requests to the 3rd Party API
-        //
-
-        //In future we will set results to an array or something containing data recieved from the API 
-        setResults(apiResults);
-=======
->>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
         onClose();
     }
 

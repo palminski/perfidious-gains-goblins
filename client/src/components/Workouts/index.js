@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Card, Row, Col} from 'react-bootstrap'
 
 import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
@@ -7,18 +8,15 @@ import "./workout.css"
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_EXCERSIZE} from '../../utils/mutations';
+import { Container } from 'reactstrap';
 
 console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 
 
 export function Workouts(props) {
     const [results, setResults] = useState([]);
-<<<<<<< HEAD
-    // const [workouts, setWorkouts] = useState([]);
-    // const [results, setResults] = useState(['']);
-=======
 
-    const {loading, data} = useQuery(QUERY_ME);
+    const {data} = useQuery(QUERY_ME);
     console.log(data);
 
     const [addExcersize] = useMutation(ADD_EXCERSIZE, {
@@ -35,7 +33,6 @@ export function Workouts(props) {
               }
         }
     });
->>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
 
     
     //===[Modal Functions]========================
@@ -70,37 +67,6 @@ export function Workouts(props) {
                 console.error('Error: ', jqXHR.responseText);
             }
         });
-<<<<<<< HEAD
-
-        // function show(result) {
-        //     let tab =
-        //     `<tr>
-        //         <th>Name</th>
-        //         <th>Type</th>
-        //         <th>Muscle</th>
-        //         <th>Equipment</th>
-        //         <th>Difficulty</th>
-        //         <th>Instructions</th>
-        //     </tr>`
-
-        //     // Loop all access rows
-        //     for (let r = {formState, result}) {
-        //         tab += `<tr>
-        //         <td>${r.name} </td>
-        //         <td>${r.type} </td>
-        //         <td>${r.muscle} </td>
-        //         <td>${r.equipment} </td>
-        //         <td>${r.difficulty} </td>
-        //         <td>${r.instructions} </td>
-        //         </tr>`;
-        //     }
-        // }
-        // const [results, setResults] = React.useState([]);
-
-        // function ListOfExercises() {
-            // const [resultsName, setResultsName] = useState("");
-=======
->>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
     }
 
 
@@ -116,53 +82,116 @@ export function Workouts(props) {
         await addExcersize({
             variables: excersizeInfo
         });
-    }
-        //===[Results]================================
-        //This will set up a state that we can set to hold the results of API request so that we can render it on page
-        // const [results,setResults] = React.useState('Placeholder for data to be rendered');
-
+    };
         
-        //===[Stuff to Render]========================
-    return (
-        <div>
-            <h2> Exercises </h2>
-            <button onClick={toggleModal}>Find Excersises!</button>
-            <hr></hr>
-                <ul className='results-list'>
-<<<<<<< HEAD
-                    {results && results.map(Workouts() = (
-                        <li>
-                            ${results.name()}
-                            ${results.type()}
-                            ${results.muscle()}
-                            ${results.equipment()}
-                            ${results.difficulty()}
-                            ${results.instructions()}
-=======
-                    {results && results.map((exercise,index) => (
-                        <li key={index}>
-                            <h3>{exercise.name}</h3>
-                            <p>{exercise.instructions}</p>
-                            <button onClick={() => addToJournal(exercise.name)}
-                            
-                            >Add Excersize</button>
->>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
-                        </li>
-                    ))}
-                </ul>
-                <footer>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
-                    <div id="root"></div>
-                </footer>
+    //===[Stuff to Render]========================
+    return ( 
+        <section>
+            <Container fluid className="workout-section">
+                <Container>
+                    <h1 className="workout-title">
+                        <strong>Workout List!</strong>
+                    </h1>
+                    <Row style={{ justifyContent: "center", paddingBottom: "10px"}}>
+                        <Col md={2} className="workout-search">Exercises
+                            <button onClick={toggleModal}>Find Excersises!</button> 
+                        </Col>
+                        <Col md={6} className="workout-card">
+                        <>
+                            <Card style={{width: '36rem', height: '45rem', text: 'black'}}>
+                                <Card.Header>Workout</Card.Header>
+                                <Card.Body>
+                                    {/* <Card.Title>Exercises
+                                        <button onClick={toggleModal}>Find Excersises!</button> 
+                                    </Card.Title> */}
+                                    <Card.Subtitle className="mb-2 bg-dark"></Card.Subtitle> 
 
+                                    <Card.Text>
+                                        {results && results.map((exercise,index) => (
+                                            <div key={index[0]}>
+                                            <p>Type:  {exercise.type}</p>
+                                            <p>Muscle Group:  {exercise.muscle}</p>
+                                            <p>Difficulty:  {exercise.difficulty}</p>
+                                            <p>Equipment Used:  {exercise.equipment}</p>
+                                            <h4>Instructions:</h4>
+                                                <p>{exercise.instructions}</p>
+                                                <button onClick={() => addToJournal(exercise.name)}>Add Excersize</button>
+                                            </div>
+                                        ))}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                            <Card style={{width: '36rem', height: '45rem', text: 'black'}}>
+                                <Card.Header>Workout</Card.Header>
+                                <Card.Body>
+                                    {/* <Card.Title>Exercises
+                                        <button onClick={toggleModal}>Find Excersises!</button> 
+                                    </Card.Title> */}
+                                    <Card.Subtitle className="mb-2 bg-dark"></Card.Subtitle> 
+
+                                    <Card.Text>
+                                        {results && results.map((exercise,index) => (
+                                            <div key={index[1]}>
+                                            <p>Type:  {exercise.type}</p>
+                                            <p>Muscle Group:  {exercise.muscle}</p>
+                                            <p>Difficulty:  {exercise.difficulty}</p>
+                                            <p>Equipment Used:  {exercise.equipment}</p>
+                                            <h4>Instructions:</h4>
+                                                <p>{exercise.instructions}</p>
+                                                <button onClick={() => addToJournal(exercise.name)}>Add Excersize</button>
+                                            </div>
+                                        ))}
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+
+                        </>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+            
+            {/* <footer>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+            </footer> */}
             {modalOpen &&
-                <WorkoutModal onClose={toggleModal} callApi={callApi}/>
-            }
-        </div>
-    )
-};
+            <WorkoutModal onClose={toggleModal} callApi={callApi}/>}  
+        </section>                                 
+    );
+    
+}
 
+
+        // <div>
+        //     <h2> Exercises </h2>
+        //     <button onClick={toggleModal}>Find Excersises!</button>
+        //     <hr></hr>
+        //         <ul className='results-list'>
+        //             {results && results.map((exercise,index) => (
+        //                 <li key={index}>
+        //                     <h3>Name:  {exercise.name}</h3>
+        //                     <button onClick={() => addToJournal(exercise.name)}>Add Excersize</button>
+        //                     <p>Type:  {exercise.type}</p>
+        //                     <p>Muscle Group:  {exercise.muscle}</p>
+        //                     <p>Difficulty:  {exercise.difficulty}</p>
+        //                     <p>Equipment Used:  {exercise.equipment}</p>
+        //                     <h4>Instructions:</h4>
+        //                         <p>{exercise.instructions}</p>
+        //                     {/* <button onClick={() => addToJournal(exercise.name)}>Add Excersize</button> */}
+        //                 </li>
+        //             ))}
+        //         </ul>
+        //     <footer>
+        //         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.min.js"></script>
+        //         <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.min.js"></script>
+        //         <div id="root"></div>
+        //     </footer>
+
+        //     {modalOpen &&
+        //         <WorkoutModal onClose={toggleModal} callApi={callApi}/>
+        //     }
+        // </div>
 
 
 
