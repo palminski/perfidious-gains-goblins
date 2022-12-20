@@ -318,3 +318,27 @@
 #comment-box {
     color: white;
 }
+
+.comment-section {
+ border-radius: 0px 25px 25px 0px;
+  display: flex;
+  padding: 25px;
+  color: white;
+  justify-content: space-between;
+  font-size: x-large !important;
+  background-color: rgb(99, 99, 99);
+  
+}
+
+#commentText {
+  font-size: x-large;
+  height: 100px;
+  width: 600px;
+  border-radius: 25px 25px 25px 25px;
+}
+
+
+
+
+
+

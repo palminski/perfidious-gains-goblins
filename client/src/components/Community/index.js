@@ -154,29 +154,33 @@ export function Community(props) {
               </div>
               
               {post.comments.map((comments, i) => (
-                <div key = {i}>
-                  <h6 className='journal-list-item'> {comments.createdBy} said {comments.commentText}</h6>
+                <div key = {i} className='comment-section'>
+                  <h6> {comments.createdBy} said {comments.commentText}</h6>
                   <div className='buttons'>
                   <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button>
+                  
+        
                   </div>
                 </div>
+                     
               ))}
+               <form onSubmit={() => handleCommentSubmit(post._id)} className='pb-5' id='submitCommentText'>
+                    <div className='buttons' id='submitCommentButton'>
+                      <div className='journal-list' id='addCommentForm'>
+                        <input  id="commentText"
+                        name="commentText"
+                        placeholder="Add a Comment"
+                        type="input"
+                        onChange={handleCommentChange}
+                       
+                        />
+                        
+                        <button className="hidden-button edit-button">Submit</button>
+                        </div>
+                        </div>
+                    </form>
               
               
-              
-              <form onSubmit={() => handleCommentSubmit(post._id)} className='m-5 p-5'>
-                <div className='form-group'>
-                  <label>Comment</label>
-                  <input  id="commentText"
-                  name="commentText"
-                  placeholder="Add a Comment"
-                  type="input"
-                  onChange={handleCommentChange}
-                 
-                  />
-                  <button>Submit</button>
-                  </div>
-              </form>
               
             </div>
           })}
