@@ -46,7 +46,7 @@ export function Community(props) {
     setFormState({ ...formState, [name]: value });
   };
 
-  
+
   const handleCommentChange = (event) => {
     const { name, value } = event.target;
     setCommentState({...commentState, [name]: value });
@@ -111,41 +111,6 @@ export function Community(props) {
     return (
       <Container>
         <Row>
-        <Col className='m-5'>
-          {postData && postData.map((post, index) => {
-            return <div key = {index}>
-              <h2> Post Title: {post.postTitle}</h2>
-              <h3>Post: {post.postText}</h3>
-              <h4>Created By:{post.createdBy}</h4>
-              <h5>Comments</h5>
-              {post.comments.map((comments, i) => (
-                <div key = {i}>
-                  <h6><b> {comments.createdBy} </b> said: {comments.commentText}</h6>
-                  <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button>
-                </div>
-              ))}
-              
-              
-              
-              <form onSubmit={() => handleCommentSubmit(post._id)} className='m-5 p-5'>
-                <div className='form-group'>
-                  <label>Comment</label>
-                  <input  id="commentText"
-                  name="commentText"
-                  placeholder="Add a Comment"
-                  type="input"
-                  onChange={handleCommentChange}
-                 
-                  />
-                  <button>Submit</button>
-                  </div>
-              </form>
-              <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button>
-            </div>
-          })}
-        </Col>
-        </Row>
-        <Row>
           <Col md={{ offset: 3, size: 6 }} sm="12">
             <Button color='dark' onClick={toggle}>
               Create Post
@@ -176,6 +141,48 @@ export function Community(props) {
             </Modal> 
           </Col>
         </Row>
+        <Row>
+        <Col className='m-5'>
+          {postData && postData.map((post, index) => {
+            return <div key = {index} className='grow-in'>
+              <div className='journal-list' id='post-container'>
+              <h2 className='journal-list-item'> Post: {post.postTitle}</h2>
+              <h3 className='journal-list-item'>{post.postText}</h3>
+              <h4 className='journal-list-item'>Created By: {post.createdBy}</h4>
+              <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button>
+              <h5 className='journal-list' id='comment-box'>Comments</h5>
+              </div>
+              
+              {post.comments.map((comments, i) => (
+                <div key = {i}>
+                  <h6 className='journal-list-item'> {comments.createdBy} said {comments.commentText}</h6>
+                  <div className='buttons'>
+                  <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button>
+                  </div>
+                </div>
+              ))}
+              
+              
+              
+              <form onSubmit={() => handleCommentSubmit(post._id)} className='m-5 p-5'>
+                <div className='form-group'>
+                  <label>Comment</label>
+                  <input  id="commentText"
+                  name="commentText"
+                  placeholder="Add a Comment"
+                  type="input"
+                  onChange={handleCommentChange}
+                 
+                  />
+                  <button>Submit</button>
+                  </div>
+              </form>
+              
+            </div>
+          })}
+        </Col>
+        </Row>
+        
       </Container>
     );
 }
