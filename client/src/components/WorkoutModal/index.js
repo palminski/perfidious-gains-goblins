@@ -5,7 +5,7 @@ import {useState} from 'react';
 // import Select from 'react-select';
 // import ReactDOM from 'react-dom/client';
 
-function WorkoutModal({onClose, setResults, callApi}) {
+function WorkoutModal({onClose, callApi}) {
     const [formState, setFormState] = useState({
         muscle: "abdominals"
     })    
@@ -17,11 +17,10 @@ function WorkoutModal({onClose, setResults, callApi}) {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        console.log('form submitted!');
-        console.log(formState);
-        console.log(`Value of ${formState.muscle}`);
-        let apiResults = await callApi(formState.muscle);
+        
+        callApi(formState.muscle);
 
+<<<<<<< HEAD
 
         //
         // This section will be where we make requests to the 3rd Party API
@@ -29,6 +28,8 @@ function WorkoutModal({onClose, setResults, callApi}) {
 
         //In future we will set results to an array or something containing data recieved from the API 
         setResults(apiResults);
+=======
+>>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
         onClose();
     }
 

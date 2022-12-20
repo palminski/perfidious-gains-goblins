@@ -4,13 +4,38 @@ import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
 import "./workout.css"
 
+import {useMutation, useQuery} from '@apollo/client';
+import { QUERY_ME } from "../../utils/queries";
+import { ADD_EXCERSIZE} from '../../utils/mutations';
+
 console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 
 
 export function Workouts(props) {
     const [results, setResults] = useState([]);
+<<<<<<< HEAD
     // const [workouts, setWorkouts] = useState([]);
     // const [results, setResults] = useState(['']);
+=======
+
+    const {loading, data} = useQuery(QUERY_ME);
+    console.log(data);
+
+    const [addExcersize] = useMutation(ADD_EXCERSIZE, {
+        update(cache, {data: {addExcersize}}) {
+            try {
+                const {me} = cache.readQuery({query: QUERY_ME});
+                console.log(me);
+                cache.writeQuery({
+                    query: QUERY_ME,
+                    data: {me: {...me, excersizes: addExcersize.excersizes}}
+                });
+              } catch (error) {
+                console.log(error);
+              }
+        }
+    });
+>>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
 
     
     //===[Modal Functions]========================
@@ -28,31 +53,8 @@ export function Workouts(props) {
         setModalOpen(!modalOpen);
     }
 
-    // const api_url = "https://api.api-ninjas.com/v1/exercises?muscle=";  
-        // method: 'GET',
-        // url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle,
-        // headers: { 'X-Api-Key': '15098ea48cmsh2b43d6524135209p13664ejsnd412390146b4'},
-        // contentType: 'application/json',
-        // success: function(result) {
-        //     console.log(result);
-        // },
-        // error: function ajaxError(jqXHR) {
-        //     console.error('Error: ', jqXHR.responseText);
-        // }
-    
-    
-
 
     async function callApi(muscle) {
-        // const apiUrl = url + muscle
-        // const response = await fetch(apiUrl, {
-        //     method: 'GET',
-        //     withcredentials: true,
-        //     headers: {
-        //         'X-Api-Key': process.env.REACT_APP_API_KEY,
-        //     }
-        // });
-        // console.log(response);
         $.ajax ({
             method: 'GET',
             url: 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle,
@@ -62,12 +64,13 @@ export function Workouts(props) {
             contentType: 'application/json',
             success: function(result) {
                 console.log(result);
-                return result;
+                setResults(result);
             },
             error: function ajaxError(jqXHR) {
                 console.error('Error: ', jqXHR.responseText);
             }
         });
+<<<<<<< HEAD
 
         // function show(result) {
         //     let tab =
@@ -96,29 +99,24 @@ export function Workouts(props) {
 
         // function ListOfExercises() {
             // const [resultsName, setResultsName] = useState("");
+=======
+>>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
     }
-    // const searchMuscle = event => {
-    //     event.preventDefault();
-    //     setResults([
-    //         ...results,
-    //     {
-    //         name: results.name,
-    //         type: results.type,
-    //         muscle: results.muscle,
-    //         equipment: results.equipment,
-    //         difficulty: results.difficulty,
-    //     }
-    //     ]);
-    //     setResults("");
-    // }
-    // searchMuscle();
-        
-    
-    
-    
-        // Setting innerHTML as tab variable
-    // document.getElementById('workouts').innerHTML = tab;
 
+
+    async function addToJournal(excersizeName) {
+        const excersizeInfo = {
+            excersize:excersizeName,
+            amount:0,
+            units:"none",
+            reps:0,
+            sets:0,
+        };
+
+        await addExcersize({
+            variables: excersizeInfo
+        });
+    }
         //===[Results]================================
         //This will set up a state that we can set to hold the results of API request so that we can render it on page
         // const [results,setResults] = React.useState('Placeholder for data to be rendered');
@@ -129,7 +127,9 @@ export function Workouts(props) {
         <div>
             <h2> Exercises </h2>
             <button onClick={toggleModal}>Find Excersises!</button>
+            <hr></hr>
                 <ul className='results-list'>
+<<<<<<< HEAD
                     {results && results.map(Workouts() = (
                         <li>
                             ${results.name()}
@@ -138,6 +138,15 @@ export function Workouts(props) {
                             ${results.equipment()}
                             ${results.difficulty()}
                             ${results.instructions()}
+=======
+                    {results && results.map((exercise,index) => (
+                        <li key={index}>
+                            <h3>{exercise.name}</h3>
+                            <p>{exercise.instructions}</p>
+                            <button onClick={() => addToJournal(exercise.name)}
+                            
+                            >Add Excersize</button>
+>>>>>>> 011af47d263956a896bf59d5d9857de729bd2d98
                         </li>
                     ))}
                 </ul>
@@ -148,7 +157,7 @@ export function Workouts(props) {
                 </footer>
 
             {modalOpen &&
-                <WorkoutModal onClose={toggleModal} results= {results} callApi = {callApi} setResults = {setResults}/>
+                <WorkoutModal onClose={toggleModal} callApi={callApi}/>
             }
         </div>
     )

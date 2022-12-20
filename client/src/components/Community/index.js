@@ -9,7 +9,6 @@ import Auth from '../../utils/auth';
 import { QUERY_POSTS } from '../../utils/queries'
 
 export function Community(props) {
-  console.log('rerender')
   // set formState to clear form on submit
   // declare mutation here
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
