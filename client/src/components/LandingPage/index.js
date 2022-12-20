@@ -9,13 +9,13 @@ import workout from "../images/workout.jpg";
 import workoutJournal from "../images/workout-journal.jpg"
 
 
-const Landing = (props) => {
+const Home = (props) => {
     return (
-        <main>
+        <main className='landing-page'>
             <Container>
                 <Row style={{ justifyContent: "center", paddingBottom: "30px", paddingTop: "60px" }}>
                     <Col md={12} className='landing-page-graphic'>
-                        <Card>
+                        <Card className='bg-dark'>
                             <Card.Img variant="top" src={globo} />
                             <Card.Body>
                                 <Card.Text>
@@ -26,7 +26,7 @@ const Landing = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <Container>
+            <Container className='choose-globo-gains'>
                 <Row style={{ justifyContent: "center", paddingBottom: "30px", paddingTop: "30px" }}>
                     <Col>
                         <div>
@@ -35,7 +35,7 @@ const Landing = (props) => {
                                 About Us...
                             </h2>
                             <p style={{ paddingBottom: "10px"}}>
-                                Globo Gains is the premier fitness application dedicated to making a better you! We strive to improve your physique, fitness activity and overall badassery. <br/>
+                                <strong>GLOBO GAINS</strong> is the premier fitness application dedicated to making a better you! We strive to improve your <strong>Physique</strong>, <strong>Fitness Activity</strong> and <strong>Overall Badassery</strong>. <br/>
                                 We've been in the buisness of making certified badasses since 2022 when 5 gentleman from the University of Oregon's Full Stack Bootcamp decided the world of fitness needs to be redefined! <br/>
                             </p>
                         </div>
@@ -54,7 +54,7 @@ const Landing = (props) => {
                     </Col>
                 </Row>
             </Container>
-            <Container>
+            <Container className='features'>
                 <Row style={{ justifyContent: "center", paddingBottom: "30px", paddingTop: "30px" }}>
                     <Col md={12}>
                     <h1 style={{paddingBottom:"30px"}}>
@@ -62,10 +62,10 @@ const Landing = (props) => {
                     </h1>
                     </Col>
                     <Col md={4} style={{paddingBottom:"30px"}} className='feature-card'>
-                        <Card className="feature-card-view">
+                        <Card className="feature-card-view bg-dark">
                             <Card.Img variant="top" src={community} alt="card-img" />
                             <Card.Body>
-                                <Card.Title>Community Blog</Card.Title>
+                                <Card.Title className='feature-card-tittle'>Community Blog</Card.Title>
                                 <Card.Text style={{ textAlign: "justify" }}>
                                     <p>
                                         Our community blog is here and listening! Be sure brag about all your wonderful and glorious gains with <strong>Globo Gains</strong>.
@@ -75,7 +75,7 @@ const Landing = (props) => {
                         </Card>
                     </Col>
                     <Col md={4} style={{paddingBottom:"30px"}} className='feature-card'>
-                        <Card className="feature-card-view">
+                        <Card className="feature-card-view bg-dark">
                             <Card.Img variant="top" src={workoutJournal} alt="card-img" />
                             <Card.Body>
                                 <Card.Title>Workout Journal</Card.Title>
@@ -89,7 +89,7 @@ const Landing = (props) => {
                         </Card>
                     </Col>
                     <Col md={4} style={{paddingBottom:"30px"}} className='feature-card'>
-                        <Card className="feature-card-view">
+                        <Card className="feature-card-view bg-dark">
                             <Card.Img variant="top" src={workout} alt="card-img" />
                             <Card.Body>
                                 <Card.Title>Excercise Reccomendations</Card.Title>
@@ -108,4 +108,4 @@ const Landing = (props) => {
     );
 }
 
-export default Landing;
+export default Home;

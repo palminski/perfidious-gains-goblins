@@ -98,11 +98,10 @@
 
   nav {
     background-color: rgb(51, 51, 51);
-    margin-bottom: 15px;
   }
   nav h1{
     padding: 10px 10px;
-    color: rgb(221, 221, 221);
+    color: #c5c6c7;
     /* text-align: left; */
   }
   .flex-container{
@@ -113,7 +112,7 @@
     left: 3px;
   }
   .current-page{
-  
+
   }
   nav ul {
     list-style-type: none;
@@ -127,7 +126,7 @@
   }
   .navigation-link{
     display: block;
-    color: rgb(221, 221, 221);
+    color:#c5c6c7;
     transition-duration: 0.3s;
     text-align: center;
     padding: 14px 16px;
@@ -151,6 +150,21 @@
     pointer-events: none;
   }
 
+  /* Landing Page Styling */
+  .landing-page{
+     color: #c5c6c7;
+     background-color: rgb(99, 99, 99);
+  }
+
+  .choose-globo-gains{
+    text-shadow: 3px 3px 5px rgb(0, 0, 0);
+  }
+
+  .features h1{
+    text-shadow: 3px 3px 5px rgb(0, 0, 0);
+  }
+
+  
 
 /* Journal Page Styling */
 .tab-container{
