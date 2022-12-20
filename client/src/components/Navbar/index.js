@@ -1,6 +1,5 @@
 import '../style.css'
 import Auth from '../../utils/auth'
-
 export function Navbar(props) {
     const {pageSelected, setPageSelected} = props
 
