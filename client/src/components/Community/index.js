@@ -9,8 +9,6 @@ import Auth from '../../utils/auth';
 import { QUERY_POSTS } from '../../utils/queries'
 
 export function Community(props) {
-  // set formState to clear form on submit
-  // declare mutation here
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
   const [commentState, setCommentState] = useState({commentText: ''})
   const [modal, setModal] = useState(false);
@@ -40,17 +38,20 @@ export function Community(props) {
     } catch (e) {
       console.log(e)
     }
-  }
+  };
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
-  }
+  };
 
+  
   const handleCommentChange = (event) => {
     const { name, value } = event.target;
     setCommentState({...commentState, [name]: value });
   };
+
 
   const handleDeletePost = async (postId) => {
     console.log(postId)
@@ -63,7 +64,7 @@ export function Community(props) {
     } catch (error) {
       console.log(error)
     }
-  }
+  };
 
 
   const handleCommentSubmit = async (postId) => {
@@ -82,7 +83,9 @@ export function Community(props) {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+
 
   const handleCommentDelete = async (postId, commentId) => {
     console.log(postId);
@@ -97,7 +100,7 @@ export function Community(props) {
    } catch (error) {
      console.log(error)
    }
-  }
+  };
 
 
 

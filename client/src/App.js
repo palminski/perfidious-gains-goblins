@@ -48,13 +48,13 @@ function App() {
         setLoggedInState(false);
         setPageSelected('Login')
       } 
-    }, 5000)
+    }, 60000)
     if (Auth.loggedIn()) {
       setLoggedInState(true);
       // setPageSelected('Journal');
     }  else {
       setLoggedInState(false);
-      // setPageSelected('Login')
+     
     } 
   })
 
