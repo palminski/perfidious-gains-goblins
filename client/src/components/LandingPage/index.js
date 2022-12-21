@@ -7,6 +7,7 @@ import globo from "../images/globo.png";
 import community from "../images/community-blog.png";
 import workout from "../images/workout.jpg";
 import workoutJournal from "../images/workout-journal.jpg"
+import Type from "./Type"
 
 
 const Home = (props) => {
@@ -30,7 +31,7 @@ const Home = (props) => {
                 <Row style={{ justifyContent: "center", paddingBottom: "30px", paddingTop: "30px" }}>
                     <Col>
                         <div>
-                            <h1 style={{ paddingBottom: "30px"}}>Why Choose Globo Gains</h1>
+                            <h1 style={{ paddingBottom: "30px"}}><Type /></h1>
                             <h2 style={{ paddingBottom: "10px"}}>
                                 About Us...
                             </h2>
