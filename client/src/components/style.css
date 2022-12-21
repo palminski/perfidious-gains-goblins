@@ -251,9 +251,7 @@
     position: absolute;
     left: 3px;
   }
-  .current-page{
-
-  }
+  
   nav ul {
     list-style-type: none;
     margin: 0;
@@ -489,7 +487,17 @@
   border-radius: 25px 25px 25px 25px;
 }
 
+/* Misc Padding */
 
+.login-top {
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+.signup-top {
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
 
 
 
