@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
+import Button from 'react-bootstrap/Button'
 
 
 export function Signup(props) {
@@ -64,7 +65,7 @@ export function Signup(props) {
             </div>
           ) : null}
           <div className="flex-row flex-end">
-            <button type="submit">Submit</button>
+            <Button type="submit" variant="secondary" size="lg">Submit</Button>
           </div>
         </form>
       </div>

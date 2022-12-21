@@ -46,7 +46,7 @@ function App() {
       if (Auth.loggedIn()) {
         setLoggedInState(true);
         // setPageSelected('Journal');
-      }  else {
+      }  else if (!pageSelected === 'Signup' && !pageSelected === 'Login'){
         setLoggedInState(false);
         setPageSelected('Home')
       } 
