@@ -17,7 +17,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
+
 
 
 export function Workouts(props) {
