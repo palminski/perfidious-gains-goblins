@@ -303,6 +303,10 @@
   
 
 /* Journal Page Styling */
+.grow-in{
+    padding-top: 50px;
+}
+
 .tab-container{
     display:flex
 }
@@ -481,24 +485,49 @@
 }
 
 #commentText {
+  justify-content: center;
+  align-self: center;
   font-size: x-large;
   height: 100px;
-  width: 600px;
+  width: 300px;
+  
   border-radius: 25px 25px 25px 25px;
 }
 
-/* Misc Padding */
+.community-container {
+    padding-top: 40px;
+}
 
+/* Login Styling */
 .login-top {
     padding-top: 200px;
     padding-bottom: 200px;
 }
+
+/* Signup Styling */
 
 .signup-top {
     padding-top: 200px;
     padding-bottom: 200px;
 }
 
+/* Workout Styling */
 
+.find-exercises {
+    padding: 50px;
+}
+
+.workout-card-container {
+
+}
+
+.workout-cards {
+    padding: 40px;
+    align-self: auto;
+   
+}
+
+
+ 
 
 

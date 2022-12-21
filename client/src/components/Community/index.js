@@ -111,10 +111,10 @@ const checkId = (post) => {
   const toggle = () => setModal(!modal);
 
     return (
-      <Container>
+      <Container className='community-container'>
         <Row>
           <Col md={{ offset: 3, size: 6 }} sm="12">
-            <Button color='dark' onClick={toggle}>
+            <Button color='secondary' onClick={toggle}>
               Create Post
             </Button>
             <Modal isOpen={modal} toggle={toggle} sm-fullscreen>
@@ -158,14 +158,14 @@ const checkId = (post) => {
               {post.comments.map((comments, i) => (
                 <div key = {i} className='comment-section'>
                   <h6> {comments.createdBy} said {comments.commentText}</h6>
-                  <div className='buttons'>
-                  {Auth.getProfile().data.username === comments.createdBy ? <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button> : ''}
+                  <div className=''>
+                  {Auth.getProfile().data.username === comments.createdBy ? <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button> : ''}
                   </div>
                 </div>
                      
               ))}
                <form onSubmit={(e) => handleCommentSubmit(e,post._id)} className='pb-5' id='submitCommentText'>
-                    <div className='buttons' id='submitCommentButton'>
+                    <div className='' id='submitCommentButton'>
                       <div className='journal-list' id='addCommentForm'>
                         <input  id="commentText"
                         name="commentText"
@@ -175,7 +175,7 @@ const checkId = (post) => {
                        
                         />
                         
-                        <button className="hidden-button edit-button">Submit</button>
+                        <Button color="secondary" size='lg'>Submit</Button>
                         </div>
                         </div>
                     </form>
