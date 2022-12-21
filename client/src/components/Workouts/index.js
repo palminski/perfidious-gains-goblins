@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// import {Card, Row, Col} from 'react-bootstrap'
 
 import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
@@ -7,6 +8,14 @@ import "./workout.css"
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_EXCERSIZE} from '../../utils/mutations';
+// import { Container } from 'reactstrap';
+
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -21,7 +30,7 @@ console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 export function Workouts(props) {
     const [results, setResults] = useState([]);
 
-    const {loading, data} = useQuery(QUERY_ME);
+    const {data} = useQuery(QUERY_ME);
     console.log(data);
 
     const [addExcersize] = useMutation(ADD_EXCERSIZE, {
@@ -87,44 +96,32 @@ export function Workouts(props) {
         await addExcersize({
             variables: excersizeInfo
         });
-    }
-        //===[Results]================================
-        //This will set up a state that we can set to hold the results of API request so that we can render it on page
-        // const [results,setResults] = React.useState('Placeholder for data to be rendered');
-
+    };
         
         //===[Stuff to Render]========================
     return  ( 
         <section>
             <Container fluid className="workout-section">
-                <Container>
-                    <h1 className="workout-title">
-                        <strong>Workout List!</strong>
-                    </h1>
-                    <Row style={{ justifyContent: "center", paddingBottom: "10px"}}>
-                        <Col md={2} className="workout-search">Exercises
-                            <button onClick={toggleModal}>Find Excersises!</button> 
-                        </Col>
-                        <Col md={6} className="workout-card">
-                        <>
-                            {results && results.map((exercise, index) =>
-                                     <Card style={{width: '36rem', height: '45rem', text: 'black'}}>
-                                     <Card.Header>{exercise.name}</Card.Header>
-                                     <Card.Body>
-                                         <Card.Text><b>Type:</b> {exercise.type}</Card.Text>
-                                         <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
-                                         <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
-                                         <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
-                                         <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
-                                         <Button variant="dark"onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
-                                     </Card.Body>
-                                 </Card>
-                            )}
-                       
-                        </>
-                        </Col>
-                    </Row>
-                </Container>
+                <Row>
+                    <button onClick={toggleModal}>Find Excersises!</button> 
+                </Row>
+                <Row className="cards" sm={12} style={{ marginBottom: "10px", paddingBottom: "10px"}}>
+                        {results && results.map((exercise) =>
+                            <Col>
+                                <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
+                                <Card.Header>{exercise.name}</Card.Header>
+                                    <Card.Body className="card-body">
+                                        <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
+                                        <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
+                                        <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
+                                        <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
+                                        <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
+                                        <Button variant="dark" onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        )}
+                </Row>
             </Container>
             {modalOpen &&
             <WorkoutModal onClose={toggleModal} callApi={callApi}/>}  
