@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+// import {Card, Row, Col} from 'react-bootstrap'
+
 import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
-import "./workout.css";
+import "./workout.css"
 
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_EXCERSIZE} from '../../utils/mutations';
+// import { Container } from 'reactstrap';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -89,18 +92,18 @@ export function Workouts(props) {
         });
     };
         
-    //===[Stuff to Render]========================
+        //===[Stuff to Render]========================
     return  ( 
         <section>
             <Container fluid className="workout-section">
-                <Row className="find-exercises">
-                    <Button variant="dark" onClick={toggleModal}>Find Excersises!</Button> 
+                <Row>
+                    <button onClick={toggleModal}>Find Excersises!</button> 
                 </Row>
-                <Row className="cards" sm={12} style={{ marginBottom: "15px", paddingBottom: "10px"}}>
+                <Row className="cards" sm={12} style={{ marginBottom: "10px", paddingBottom: "10px"}}>
                         {results && results.map((exercise) =>
                             <Col>
-                                <Card className="workout-cards" border="dark" style={{margin: "15px", width: '30rem', height: '40rem', text: 'fit', text: 'black'}} >
-                                <Card.Header><b>{exercise.name}</b></Card.Header>
+                                <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
+                                <Card.Header>{exercise.name}</Card.Header>
                                     <Card.Body className="card-body">
                                         <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
                                         <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
@@ -120,3 +123,8 @@ export function Workouts(props) {
     );
 
 }
+
+
+
+
+
