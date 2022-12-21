@@ -94,7 +94,7 @@ export function Workouts(props) {
         <section>
             <Container fluid className="workout-section">
                 <Row className="find-exercises">
-                    <Button variant="dark" onClick={toggleModal}>Find Excersises!</Button> 
+                    <Button variant="dark" justify='center' size='lg' onClick={toggleModal}>Find Excersises!</Button> 
                 </Row>
                 <Row className="cards" sm={12} style={{ marginBottom: "15px", paddingBottom: "10px"}}>
                         {results && results.map((exercise) =>
