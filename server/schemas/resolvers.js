@@ -91,29 +91,29 @@ const resolvers = {
             return user;
         },
         //====[Resolvers for Journal Page==================================================================]
-        addExcersize: async(parent, {excersize, amount, units, sets, reps }, context) => {
-            console.log('add Excersize');
+        addExercise: async(parent, {exercise, amount, units, sets, reps }, context) => {
+            console.log('add Exercise');
             if (context.user) {
                 console.log(context.user);
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                    {$push: {exercises: {exercise: exercise, amount:amount, units:units, reps:reps, sets:sets}}},
                     {new:true, runValidators:true}
                 );
                 return updatedUser;
             }
-            throw new AuthenticationError('You need to be logged in to add an excersize');
+            throw new AuthenticationError('You need to be logged in to add an exercise');
         },
-        editExcersize: async(parent, {excersizeId, excersize, amount, units, sets, reps }, context) => {
-            console.log('edit Excersize');
+        editExercise: async(parent, {exerciseId, exercise, amount, units, sets, reps }, context) => {
+            console.log('edit Exercise');
             if (context.user) {
                 const user = await User.findById(context.user._id);
-                const index =user.excersizes.findIndex(exercize => exercize._id.toString() === excersizeId);
+                const index =user.exercises.findIndex(exercize => exercize._id.toString() === exerciseId);
                 console.log(index, 91);
 
-                const replacer = { _id: excersizeId, excersize, amount, units, reps, sets };
+                const replacer = { _id: exerciseId, exercise, amount, units, reps, sets };
 
-                user.excersizes.splice(index, 1, replacer);
+                user.exercises.splice(index, 1, replacer);
                 await user.save();
                 return user;
 
@@ -122,36 +122,36 @@ const resolvers = {
                 //     {_id: context.user._id},
                 //     {
                 //         $pull: {
-                //             excersizes: {
-                //                 _id: excersizeId
+                //             exercises: {
+                //                 _id: exerciseId
                 //             }
                 //         },
-                //         $push: {excersizes: {excersize, amount, units, reps, sets}}
+                //         $push: {exercises: {exercise, amount, units, reps, sets}}
                 //     },
                 //     {new:true}
                 // );
                 // updatedUser = await User.findOneAndUpdate(
                 //     {_id: context.user._id},
-                //     {$push: {excersizes: {excersize: excersize, amount:amount, units:units, reps:reps, sets:sets}}},
+                //     {$push: {exercises: {exercise: exercise, amount:amount, units:units, reps:reps, sets:sets}}},
                 //     {new:true, runValidators:true}
                 // );
                 return updatedUser;
             }
-            throw new AuthenticationError('You need to be logged in to edit an excersize');
+            throw new AuthenticationError('You need to be logged in to edit an exercise');
         },
-        deleteExcersize: async(parent,{excersizeId}, context) => {
-            console.log('remove Excersize');
+        deleteExercise: async(parent,{exerciseId}, context) => {
+            console.log('remove Exercise');
             if (context.user) {
                 
-                console.log(excersizeId)
+                console.log(exerciseId)
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {excersizes: {_id: excersizeId}}},
+                    {$pull: {exercises: {_id: exerciseId}}},
                     {new:true}
                 );
                 return updatedUser;
             }
-            throw new AuthenticationError('You need to be logged in to delete an excersize');
+            throw new AuthenticationError('You need to be logged in to delete an exercise');
         },
         addNote: async(parent, {noteText}, context) => {
             console.log('add Note');

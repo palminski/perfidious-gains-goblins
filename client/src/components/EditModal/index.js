@@ -2,36 +2,36 @@ import '../style.css'
 import { useState } from 'react';
 
 import {useMutation, useQuery} from '@apollo/client';
-import { ADD_EXCERSIZE, ADD_NOTE, EDIT_EXCERSIZE, EDIT_NOTE } from '../../utils/mutations';
+import { ADD_EXERCISE, ADD_NOTE, EDIT_EXERCISE, EDIT_NOTE } from '../../utils/mutations';
 import { QUERY_ME } from '../../utils/queries';
 
-function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
-    const [formState, setFormState] = useState(excersizeInfo);
+function EditModal({onClose, mode, tabSelected, exerciseInfo, noteInfo}) {
+    const [formState, setFormState] = useState(exerciseInfo);
     const [noteState, setNoteState] = useState(noteInfo);
 
     //===[Mutations]=============================================
-    const [addExcersize] = useMutation(ADD_EXCERSIZE, {
-        update(cache, {data: {addExcersize}}) {
+    const [addExercise] = useMutation(ADD_EXERCISE, {
+        update(cache, {data: {addExercise}}) {
             try {
                 const {me} = cache.readQuery({query: QUERY_ME});
                 console.log(me);
                 cache.writeQuery({
                     query: QUERY_ME,
-                    data: {me: {...me, excersizes: addExcersize.excersizes}}
+                    data: {me: {...me, exercises: addExercise.exercises}}
                 });
               } catch (error) {
                 console.log(error);
               }
         }
     });
-    const [editExcersize] = useMutation(EDIT_EXCERSIZE, {
-        update(cache, {data: {editExcersize}}) {
+    const [editExercise] = useMutation(EDIT_EXERCISE, {
+        update(cache, {data: {editExercise}}) {
             try {
                 const {me} = cache.readQuery({query: QUERY_ME});
                 console.log(me);
                 cache.writeQuery({
                     query: QUERY_ME,
-                    data: {me: {...me, excersizes: editExcersize.excersizes}}
+                    data: {me: {...me, exercises: editExercise.exercises}}
                 });
               } catch (error) {
                 console.log(error);
@@ -87,14 +87,14 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
         try {
             onClose();
             if (mode === "Add") {
-                await addExcersize({
+                await addExercise({
                     variables: formState
                 });
             }
             else
             {
-                await editExcersize({
-                    variables: {...formState, excersizeId:excersizeInfo._id}
+                await editExercise({
+                    variables: {...formState, exerciseId:exerciseInfo._id}
                 });
             }
         }
@@ -133,21 +133,21 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
     return (
         <>
 
-            {tabSelected === "Excersizes" && <div className="modal-background" onClick={onClose}>
+            {tabSelected === "Exercises" && <div className="modal-background" onClick={onClose}>
 
                 <div className="modal-body container" onClick={(e) => e.stopPropagation()}>
                     <h2>{mode} {tabSelected}</h2>
 
                     <form onSubmit={handleFormSubmit}>
-                        <label htmlFor="excersize">Excersize: </label>
-                        <input required={true} type="text" id="excersize" name="excersize" placeholder='Excersize Name' onChange={handleFormChange} defaultValue={excersizeInfo.excersize}></input>
+                        <label htmlFor="exercise">Exercise: </label>
+                        <input required={true} type="text" id="exercise" name="exercise" placeholder='Exercise Name' onChange={handleFormChange} defaultValue={exerciseInfo.exercise}></input>
                         <br />
                         <label htmlFor="amount">Amount: </label>
-                        <input type="number" min="0" max="10000000000" step=".5" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.amount}></input>
+                        <input type="number" min="0" max="10000000000" step=".5" id="amount" name="amount" placeholder='Weight, distance, etc.' onChange={handleFormChange} defaultValue={exerciseInfo.amount}></input>
 
                         <label htmlFor="units">Units: </label>
-                        {/* <input required="true" type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={excersizeInfo.units}></input> */}
-                        <select name='units' id="units" onChange={handleFormChange} defaultValue={excersizeInfo.units}>
+                        {/* <input required="true" type="text" id="units" name="units" placeholder='lbs, miles, mins, etc.' onChange={handleFormChange} defaultValue={exerciseInfo.units}></input> */}
+                        <select name='units' id="units" onChange={handleFormChange} defaultValue={exerciseInfo.units}>
                             <option value=''></option>
                             <option value="lbs">lbs</option>
                             <option value="kilos">kilos</option>
@@ -158,10 +158,10 @@ function EditModal({onClose, mode, tabSelected, excersizeInfo, noteInfo}) {
                         </select>
                         <br />
                         <label htmlFor="sets">Sets: </label>
-                        <input type="number" min="0" max="500" id="sets" name="sets" placeholder='number of sets' onChange={handleFormChange} defaultValue={excersizeInfo.sets}></input>
+                        <input type="number" min="0" max="500" id="sets" name="sets" placeholder='number of sets' onChange={handleFormChange} defaultValue={exerciseInfo.sets}></input>
 
                         <label htmlFor="reps">Reps: </label>
-                        <input type="number" min="0" max="500" id="reps" name="reps" placeholder='number of reps' onChange={handleFormChange} defaultValue={excersizeInfo.reps}></input>
+                        <input type="number" min="0" max="500" id="reps" name="reps" placeholder='number of reps' onChange={handleFormChange} defaultValue={exerciseInfo.reps}></input>
                         <br />
                         <button>Save</button>
                         <button onClick={onClose}>Cancel</button>

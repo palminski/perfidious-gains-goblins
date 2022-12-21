@@ -66,13 +66,13 @@ mutation deleteComment($postId: String!, $commentId: String!) {
 }
 `
 
-export const ADD_EXCERSIZE = gql`
-mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
-    addExcersize( excersize: $excersize, amount: $amount, units: $units, reps: $reps, sets: $sets) {
+export const ADD_EXERCISE = gql`
+mutation AddExercise($exercise: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
+    addExercise( exercise: $exercise, amount: $amount, units: $units, reps: $reps, sets: $sets) {
     username  
-    excersizes {
+    exercises {
         _id
-        excersize
+        exercise
         amount
         units
         reps
@@ -81,13 +81,13 @@ mutation AddExcersize($excersize: String!, $amount: Float!, $units: String!, $re
     }
   }
 `
-export const EDIT_EXCERSIZE = gql`
-mutation EditExcersize($excersizeId: ID! $excersize: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
-    editExcersize( excersizeId: $excersizeId, excersize: $excersize, amount: $amount, units: $units, reps: $reps, sets: $sets) {
+export const EDIT_EXERCISE = gql`
+mutation EditExercise($exerciseId: ID! $exercise: String!, $amount: Float!, $units: String!, $reps: Int!, $sets: Int!) {
+    editExercise( exerciseId: $exerciseId, exercise: $exercise, amount: $amount, units: $units, reps: $reps, sets: $sets) {
     username  
-    excersizes {
+    exercises {
         _id
-        excersize
+        exercise
         amount
         units
         reps
@@ -96,13 +96,13 @@ mutation EditExcersize($excersizeId: ID! $excersize: String!, $amount: Float!, $
     }
   }
 `
-export const DELETE_EXCERSIZE = gql`
-mutation DeleteExcersize($excersizeId: ID!) {
-    deleteExcersize(excersizeId: $excersizeId) {
+export const DELETE_EXERCISE = gql`
+mutation DeleteExercise($exerciseId: ID!) {
+    deleteExercise(exerciseId: $exerciseId) {
      username 
-     excersizes {
+     exercises {
         _id
-        excersize
+        exercise
         amount
         units
         reps

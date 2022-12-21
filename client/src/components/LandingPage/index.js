@@ -45,7 +45,7 @@ const Home = (props) => {
                             </h2>
                             <p>
                                 Our promise to you is to 100% change your life around and turn you, yes <strong>YOU!</strong> Into a certified <strong>BADASS</strong>.
-                                Follow our amazing <strong>Excercise Recommendations</strong> to get up to date with workouts that will redefine you! After you have your desired
+                                Follow our amazing <strong>Exercise Recommendations</strong> to get up to date with workouts that will redefine you! After you have your desired
                                 workouts be sure to track <strong>EVERYTHING</strong> in our state of the art <strong>Workout Journal</strong> and after you've made sure to grab your gains,
                                 be sure to brag about it to <strong>EVERYONE</strong> in our ever connecting <strong>Community Blog</strong>. We are <strong>GLOBO GAINS</strong>.
                             </p>
@@ -92,10 +92,10 @@ const Home = (props) => {
                         <Card className="feature-card-view bg-dark">
                             <Card.Img variant="top" src={workout} alt="card-img" />
                             <Card.Body>
-                                <Card.Title>Excercise Reccomendations</Card.Title>
+                                <Card.Title>Exercise Reccomendations</Card.Title>
                                 <Card.Text style={{ textAlign: "justify" }}>
                                     <p>
-                                        Cant seem to decide on what to do when you want to get them gains? With our amazing <strong>Excercise Reccomendations</strong> you'll
+                                        Cant seem to decide on what to do when you want to get them gains? With our amazing <strong>Exercise Reccomendations</strong> you'll
                                         never have to think again!
                                     </p>
                                 </Card.Text>
