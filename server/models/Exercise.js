@@ -1,7 +1,7 @@
 const {Schema} = require('mongoose');
- const excersizeSchema = new Schema(
+ const exerciseSchema = new Schema(
     {
-        excersize: {
+        exercise: {
             type: String,
             required: true,
             trim: true
@@ -27,4 +27,4 @@ const {Schema} = require('mongoose');
  )
 
 
- module.exports = excersizeSchema;
+ module.exports = exerciseSchema;

@@ -16,7 +16,7 @@
                 <p>Equipment Used:  {exercise.equipment}</p>
                 <h4>Instructions:</h4>
                     <p>{exercise.instructions}</p>
-                    <button onClick={() => addToJournal(exercise.name)}>Add Excersize</button>
+                    <button onClick={() => addToJournal(exercise.name)}>Add Exercise</button>
                 </div>
             ))}
         </Card.Text>

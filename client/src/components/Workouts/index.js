@@ -7,15 +7,8 @@ import "./workout.css"
 
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
-import { ADD_EXCERSIZE} from '../../utils/mutations';
+import { ADD_EXERCISE} from '../../utils/mutations';
 // import { Container } from 'reactstrap';
-
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -33,14 +26,14 @@ export function Workouts(props) {
     const {data} = useQuery(QUERY_ME);
     console.log(data);
 
-    const [addExcersize] = useMutation(ADD_EXCERSIZE, {
-        update(cache, {data: {addExcersize}}) {
+    const [addExercise] = useMutation(ADD_EXERCISE, {
+        update(cache, {data: {addExercise}}) {
             try {
                 const {me} = cache.readQuery({query: QUERY_ME});
                 console.log(me);
                 cache.writeQuery({
                     query: QUERY_ME,
-                    data: {me: {...me, excersizes: addExcersize.excersizes}}
+                    data: {me: {...me, exercises: addExercise.exercises}}
                 });
               } catch (error) {
                 console.log(error);
@@ -84,17 +77,17 @@ export function Workouts(props) {
     }
 
 
-    async function addToJournal(excersizeName) {
-        const excersizeInfo = {
-            excersize:excersizeName,
+    async function addToJournal(exerciseName) {
+        const exerciseInfo = {
+            exercise:exerciseName,
             amount:0,
             units:"none",
             reps:0,
             sets:0,
         };
 
-        await addExcersize({
-            variables: excersizeInfo
+        await addExercise({
+            variables: exerciseInfo
         });
     };
         

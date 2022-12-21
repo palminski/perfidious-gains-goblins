@@ -4,7 +4,7 @@ const typeDefs = gql`
     type User {
         _id: ID
         username: String
-        excersizes: [Excersize]
+        exercises: [Exercise]
         notes: [Note]
         posts: [Post]
     }
@@ -20,9 +20,9 @@ const typeDefs = gql`
         commentText: String
         createdBy: String
     }
-    type Excersize {
+    type Exercise {
         _id: ID
-        excersize: String
+        exercise: String
         amount: Float
         units: String
         reps: Int
@@ -53,9 +53,9 @@ const typeDefs = gql`
         addComment(postId: String!, commentText: String!): Post
         deleteComment(postId: String!, commentId: String!): Post
 
-        addExcersize(excersize: String!, amount: Float!, units: String!, reps: Int, sets: Int): User
-        editExcersize(excersizeId: ID!, excersize: String!, amount: Float!, units: String!, reps: Int!, sets: Int!): User
-        deleteExcersize(excersizeId: ID!): User
+        addExercise(exercise: String!, amount: Float!, units: String!, reps: Int, sets: Int): User
+        editExercise(exerciseId: ID!, exercise: String!, amount: Float!, units: String!, reps: Int!, sets: Int!): User
+        deleteExercise(exerciseId: ID!): User
 
         addNote(noteText: String!): User
         editNote(noteId: ID!,noteText: String!): User
