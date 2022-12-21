@@ -34,7 +34,7 @@ export function Signup(props) {
     };
   
     return (
-      <div className="container my-1">
+      <div className="container my-1 signup-top">
   
         <h2>Signup</h2>
         <form onSubmit={handleFormSubmit}>
