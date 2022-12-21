@@ -95,25 +95,26 @@ export function Workouts(props) {
             <Container fluid className="workout-section">
 
                 <Row className="find-exercises">
-                    <Button variant="dark" justify='center' size='lg' onClick={toggleModal}>Find Excersises!</Button> 
-
+                    <Col>
+                        <Button variant="secondary" size='lg' md={12} style={{justifyContent: 'center'}}  onClick={toggleModal}>Find Excersises!</Button> 
+                    </Col>
                 </Row>
                 <Row className="cards" sm={12} style={{ marginBottom: "10px", paddingBottom: "10px"}}>
-                        {results && results.map((exercise) =>
-                            <Col>
-                                <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
-                                <Card.Header className='workout-button'><b>{exercise.name}</b></Card.Header>
-                                    <Card.Body className="card-body">
-                                        <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
-                                        <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
-                                        <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
-                                        <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
-                                        <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
-                                        <Button variant="dark" onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        )}
+                    {results && results.map((exercise) =>
+                        <Col>
+                            <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
+                            <Card.Header className='workout-button'><b>{exercise.name}</b></Card.Header>
+                                <Card.Body className="card-body">
+                                    <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
+                                    <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
+                                    <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
+                                    <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
+                                    <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
+                                    <Button variant="dark" onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    )}
                 </Row>
             </Container>
             {modalOpen &&
