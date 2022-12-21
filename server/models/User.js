@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-const excersizeSchema = require('./Excersize');
+const exerciseSchema = require('./Exercise');
 
 const noteSchema = require('./Notes');
 
@@ -18,7 +18,7 @@ const userSchema = new Schema(
             required: true,
             minlength: 8
         },
-        excersizes: [excersizeSchema],
+        exercises: [exerciseSchema],
 
         notes: [noteSchema]
 

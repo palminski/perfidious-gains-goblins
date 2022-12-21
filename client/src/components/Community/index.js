@@ -67,7 +67,10 @@ export function Community(props) {
   };
 
 
-  const handleCommentSubmit = async (postId) => {
+  const handleCommentSubmit = async (e,postId) => {
+    e.preventDefault();
+    console.log(e );
+    console.log(postId);
     try {
       const mutationResponse = await addComment({
         variables: { 
@@ -161,7 +164,7 @@ const checkId = (post) => {
                 </div>
                      
               ))}
-               <form onSubmit={() => handleCommentSubmit(post._id)} className='pb-5' id='submitCommentText'>
+               <form onSubmit={(e) => handleCommentSubmit(e,post._id)} className='pb-5' id='submitCommentText'>
                     <div className='buttons' id='submitCommentButton'>
                       <div className='journal-list' id='addCommentForm'>
                         <input  id="commentText"

@@ -4,8 +4,8 @@ export const QUERY_USER = gql`
    {
     user {
         username
-        excersizes {
-            excersize
+        exercises {
+            exercise
             amount
             units
             reps
@@ -19,9 +19,9 @@ export const QUERY_ME = gql`
     me {
         _id
         username
-        excersizes {
+        exercises {
             _id
-            excersize
+            exercise
             amount
             units
             reps

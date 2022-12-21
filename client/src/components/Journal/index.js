@@ -5,15 +5,15 @@ import EditModal from "../EditModal";
 
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
-import { DELETE_EXCERSIZE, DELETE_NOTE } from "../../utils/mutations";
+import { DELETE_EXERCISE, DELETE_NOTE } from "../../utils/mutations";
 import auth from "../../utils/auth";
 
 
 export function Journal(props) {
 
-    const defaultExcersizeInfo = {
+    const defaultExerciseInfo = {
         _id:"",
-        excersize:"",
+        exercise:"",
         amount:"",
         units:"",
         reps:"",
@@ -21,28 +21,28 @@ export function Journal(props) {
     };
     
     //set up states
-    const [tabSelected, setTabSelected] = useState("Excersizes");
+    const [tabSelected, setTabSelected] = useState("Exercises");
     const [modalOpen, setModalOpen] = useState(false);
     const [mode,setMode] = useState('Edit')
     
-    const [excersizeInfo, setExcersizeInfo] = useState(defaultExcersizeInfo);
+    const [exerciseInfo, setExerciseInfo] = useState(defaultExerciseInfo);
     const [noteInfo, setNoteInfo] = useState({_id:"",noteText:""});
 
     //set up data Queries
     const {loading, data} = useQuery(QUERY_ME);
-    const excersizes = (data?.me.excersizes); 
+    const exercises = (data?.me.exercises); 
     const notes = (data?.me.notes);  
 
     //===[set Up Mutations]=====================================
-    const [deleteExcersize] = useMutation(DELETE_EXCERSIZE, {
-        //Updates Cache so that excersizes delete from page imediatly upon being deleted from database
-        update(cache, {data: {deleteExcersize}}) {
+    const [deleteExercise] = useMutation(DELETE_EXERCISE, {
+        //Updates Cache so that exercises delete from page imediatly upon being deleted from database
+        update(cache, {data: {deleteExercise}}) {
             try {
                 const {me} = cache.readQuery({query: QUERY_ME});
                 console.log(me);
                 cache.writeQuery({
                     query: QUERY_ME,
-                    data: {me: {...me, excersizes: deleteExcersize.excersizes}}
+                    data: {me: {...me, exercises: deleteExercise.exercises}}
                 });
               } catch (error) {
                 console.log(error);
@@ -81,18 +81,18 @@ export function Journal(props) {
         setModalOpen(!modalOpen);
     }
 
-    const handleEditExcersize = (excersize) => {
-        let amountPlaceholder = excersize.amount
-        if (excersize.amount === 0){
+    const handleEditExercise = (exercise) => {
+        let amountPlaceholder = exercise.amount
+        if (exercise.amount === 0){
             amountPlaceholder = ""
         }
-        setExcersizeInfo({
-            _id:excersize._id,
-            excersize: excersize.excersize,
+        setExerciseInfo({
+            _id:exercise._id,
+            exercise: exercise.exercise,
             amount: amountPlaceholder,
-            units: excersize.units,
-            sets:excersize.sets,
-            reps: excersize.reps
+            units: exercise.units,
+            sets:exercise.sets,
+            reps: exercise.reps
         })
         toggleModal();
     }
@@ -105,8 +105,8 @@ export function Journal(props) {
         toggleModal();
     }
 
-    const handleAddExcersize = () => {
-        setExcersizeInfo(defaultExcersizeInfo);
+    const handleAddExercise = () => {
+        setExerciseInfo(defaultExerciseInfo);
         toggleModal();
     }
     const handleAddNote = () => {
@@ -114,16 +114,16 @@ export function Journal(props) {
         toggleModal();
     }
 
-    const handleDeleteExcersize = async(excersizeId) => {
-        console.log(excersizeId);
+    const handleDeleteExercise = async(exerciseId) => {
+        console.log(exerciseId);
         try {
-            await deleteExcersize({
-                variables: {excersizeId: excersizeId}
+            await deleteExercise({
+                variables: {exerciseId: exerciseId}
             });
             
         }
         catch (error) {
-            console.log("could not delete excersize")
+            console.log("could not delete exercise")
             console.error(error);
         }
     }
@@ -148,27 +148,27 @@ export function Journal(props) {
 
             <div className="container">
                 <div className="tab-container">
-                    <h1 className={`tab ${(tabSelected === "Excersizes") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Excersizes")}>Excersizes</h1>
+                    <h1 className={`tab ${(tabSelected === "Exercises") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Exercises")}>Exercises</h1>
                     <h1 className={`tab ${(tabSelected === "Notes") ? 'active-tab' : 'inactive-tab'}`} onClick={() => setTabSelected("Notes")}>Notes</h1>
                 </div>
 
 
-                {tabSelected === "Excersizes" &&
+                {tabSelected === "Exercises" &&
                     <>
                         <ul className="journal-list">
 
-                            {excersizes && excersizes.map(excersize => (
-                                <li key={excersize._id} className="journal-list-item">
-                                    <p>{excersize.excersize} {excersize.amount > 0 && <span>- {excersize.amount} {excersize.units!== "none" && excersize.units}</span>}  {excersize.sets > 0 && <span> - {excersize.sets} sets</span>} {excersize.reps > 0 && excersize.sets > 0 && <span> of </span>} {excersize.reps > 0 && <span>{excersize.reps} reps</span>}</p>
+                            {exercises && exercises.map(exercise => (
+                                <li key={exercise._id} className="journal-list-item">
+                                    <p>{exercise.exercise} {exercise.amount > 0 && <span>- {exercise.amount} {exercise.units!== "none" && exercise.units}</span>}  {exercise.sets > 0 && <span> - {exercise.sets} sets</span>} {exercise.reps > 0 && exercise.sets > 0 && <span> of </span>} {exercise.reps > 0 && <span>{exercise.reps} reps</span>}</p>
                                     <div className="buttons">
-                                        <button className="hidden-button edit-button" onClick={() => { handleEditExcersize(excersize); setMode("Edit") }}>edit</button>
-                                        <button className="hidden-button delete-button" onClick={() => handleDeleteExcersize(excersize._id)}>delete</button>
+                                        <button className="hidden-button edit-button" onClick={() => { handleEditExercise(exercise); setMode("Edit") }}>edit</button>
+                                        <button className="hidden-button delete-button" onClick={() => handleDeleteExercise(exercise._id)}>delete</button>
                                     </div>
                                 </li>
                             ))}
                         </ul>
                         <div className="tab-container">
-                            <h1 className="add-button" onClick={() => { handleAddExcersize(); setMode("Add") }}>Add Excersize</h1>
+                            <h1 className="add-button" onClick={() => { handleAddExercise(); setMode("Add") }}>Add Exercise</h1>
                         </div>
                     </>
                 }
@@ -196,7 +196,7 @@ export function Journal(props) {
 
 
                 {modalOpen &&
-                    <EditModal onClose={toggleModal} tabSelected={tabSelected} mode={mode} excersizeInfo={excersizeInfo} noteInfo={noteInfo} />
+                    <EditModal onClose={toggleModal} tabSelected={tabSelected} mode={mode} exerciseInfo={exerciseInfo} noteInfo={noteInfo} />
                 }
 
 
