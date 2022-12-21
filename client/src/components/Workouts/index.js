@@ -14,12 +14,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 console.log(`apikey ${process.env.REACT_APP_API_KEY}`)
 
@@ -100,7 +94,7 @@ export function Workouts(props) {
         <section>
             <Container fluid className="workout-section">
                 <Row className="find-exercises">
-                    <button onClick={toggleModal}>Find Excersises!</button> 
+                    <Button variant="dark" onClick={toggleModal}>Find Excersises!</Button> 
                 </Row>
                 <Row className="cards" sm={12} style={{ marginBottom: "15px", paddingBottom: "10px"}}>
                         {results && results.map((exercise) =>
