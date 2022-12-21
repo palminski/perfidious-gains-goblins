@@ -96,13 +96,13 @@ export function Workouts(props) {
 
                 <Row className="find-exercises">
                     <Col>
-                        <Button variant="secondary" size='lg' md={12} style={{justifyContent: 'center'}}  onClick={toggleModal}>Find Excersises!</Button> 
+                        <Button variant="secondary" size='lg' md={12} style={{justifyContent: 'center'}}  onClick={toggleModal}>Find Exersises!</Button> 
                     </Col>
                 </Row>
-                <Row className="cards" sm={12} style={{ marginBottom: "10px", paddingBottom: "10px"}}>
+                <Row className="workout-cards" sm={12} style={{ marginBottom: "10px", paddingBottom: "10px"}}>
                     {results && results.map((exercise) =>
-                        <Col>
-                            <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
+                        <Col className="workout-cards">
+                            <Card style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
                             <Card.Header className='workout-button'><b>{exercise.name}</b></Card.Header>
                                 <Card.Body className="card-body">
                                     <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
@@ -110,7 +110,7 @@ export function Workouts(props) {
                                     <Card.Text><b>Difficulty:</b> {exercise.difficulty}</Card.Text>
                                     <Card.Text><b>Equipment:</b> {exercise.equipment}</Card.Text>
                                     <Card.Text><b>Instructions:</b> {exercise.instructions}</Card.Text>
-                                    <Button variant="dark" onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
+                                    <Button variant="secondary" onClick={() => addToJournal(exercise.name)}>Add Exercise!</Button>
                                 </Card.Body>
                             </Card>
                         </Col>

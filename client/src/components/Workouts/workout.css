@@ -27,11 +27,11 @@ button {
     font-size: 25px;
 }
 
-.cards {
+/* .cards {
     justify-content: space-around;
     margin: 15px 10px 0px 10px;
     padding:10px;
-}
+} */
 
 .card-body {
     overflow: auto;
@@ -41,8 +41,10 @@ button {
 
 .workout-cards {
     font-size: large;
-    margin: 0px;
-    padding: 0px;
+    justify-content: space-around;
+
+    margin: 15px 10px 0px 10px;
+    padding:10px;
 
 }
 
