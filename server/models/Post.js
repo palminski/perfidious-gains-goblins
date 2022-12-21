@@ -17,7 +17,11 @@ const postSchema = new Schema(
         },
         createdBy: {
             type: String,
-            required: true
+            required: true,
+            references: {
+                key: "username",
+                model: "User"
+            } 
         },
         comments: [commentSchema]
     }

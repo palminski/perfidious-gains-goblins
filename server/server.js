@@ -4,6 +4,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 
 const {typeDefs, resolvers} = require('./schemas');
+const { authMiddleware } = require('./utils/auths');
 
 const db = require('./config/connection');
 //<authMiddleware will go here>
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 3001
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    //<context: authMiddleware>
+    context: authMiddleware,
 });
 
 //------[Set Up Express App]-----------------------
@@ -40,9 +41,7 @@ const startApolloServer = async(typeDefs,resolvers) => {
  |||                                                 |||
 =|||=================================================|||=
  |||                                                 |||
-
             API Server Setup Successful!
-
     Test GraphQL at http://localhost:${PORT}${server.graphqlPath}
     
  |||                                                 |||
