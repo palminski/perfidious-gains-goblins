@@ -251,9 +251,9 @@
     position: absolute;
     left: 3px;
   }
-  /* .current-page{ */
+  .current-page{
 
-  /* } */
+  }
   nav ul {
     list-style-type: none;
     margin: 0;
