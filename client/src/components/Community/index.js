@@ -68,8 +68,6 @@ export function Community(props) {
 
 
   const handleCommentSubmit = async (postId) => {
-
-
     try {
       const mutationResponse = await addComment({
         variables: { 
