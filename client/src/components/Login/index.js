@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import { Journal } from '../Journal';
+import Button from 'react-bootstrap/Button'
 
 export function Login(props) {
   const [formState, setFormState] = useState({ username: '', password: '' });
@@ -62,7 +63,7 @@ export function Login(props) {
           </div>
         ) : null}
         <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
+          <Button type="submit" variant="secondary" size="lg">Submit</Button>
         </div>
       </form>
     </div>
