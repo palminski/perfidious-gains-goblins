@@ -32,7 +32,7 @@
     - React
     - Apollo-client
     - Graphql
-  
+    - Jquery
 
   ## Contributing
     

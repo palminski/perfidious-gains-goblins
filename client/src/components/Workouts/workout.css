@@ -1,21 +1,9 @@
 .results-list {
-    background-color: rgb(90, 48, 94);
-    margin: 0px 600px 0px 600px;
-}
+    background-color: rgb(90, 48, 94);}
 h3 {
     font-size: large;
     border-color:rgb(51, 51, 51);
     border: 10px bold;
-
-}
-p {
-    /* margin: 600px; */
-    padding: 10px 10px;
-    color: white;
-    margin-bottom: 0px;
-    border: 7px solid white;
-    border-bottom: 0;
-    border-radius: 25px 25px 25px 25px;
 
 }
 
@@ -28,4 +16,27 @@ button {
     border-radius: 25px 25px 25px 25px;
     background-color: rgb(51, 51, 51);
 }
+
+.workout-section {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(51, 51, 51);
+    font-size: 15px;
+}
+
+.workout-title {
+    font-size: 25px;
+}
+
+.cards {
+    justify-content: space-around;
+}
+
+.card-body {
+    overflow: auto;
+
+}
+
+
+
 

@@ -9,8 +9,6 @@ import Auth from '../../utils/auth';
 import { QUERY_POSTS } from '../../utils/queries'
 
 export function Community(props) {
-  // set formState to clear form on submit
-  // declare mutation here
   const [formState, setFormState] = useState({postText: '', postTitle: ''})
   const [commentState, setCommentState] = useState({commentText: ''})
   const [modal, setModal] = useState(false);
@@ -40,17 +38,20 @@ export function Community(props) {
     } catch (e) {
       console.log(e)
     }
-  }
+  };
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
-  }
+  };
+
 
   const handleCommentChange = (event) => {
     const { name, value } = event.target;
     setCommentState({...commentState, [name]: value });
   };
+
 
   const handleDeletePost = async (postId) => {
     console.log(postId)
@@ -63,7 +64,7 @@ export function Community(props) {
     } catch (error) {
       console.log(error)
     }
-  }
+  };
 
 
   const handleCommentSubmit = async (postId) => {
@@ -78,15 +79,15 @@ export function Community(props) {
       });
       const comment = mutationResponse.data.addComment.createdBy.commentText;
       Auth.getToken(comment);
-  
+      refetch();
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+
 
   const handleCommentDelete = async (postId, commentId) => {
-    console.log(postId);
-    console.log(commentId);
     try {
       await deleteComment({
        variables: { 
@@ -97,9 +98,12 @@ export function Community(props) {
    } catch (error) {
      console.log(error)
    }
-  }
+  };
 
-
+const checkId = (post) => {
+  const profileId = Auth.getProfile()
+  return profileId.data.username === post.createdBy
+}
 
 
   
@@ -107,41 +111,6 @@ export function Community(props) {
 
     return (
       <Container>
-        <Row>
-        <Col className='m-5'>
-          {postData && postData.map((post, index) => {
-            return <div key = {index}>
-              <h2> Post Title: {post.postTitle}</h2>
-              <h3>Post: {post.postText}</h3>
-              <h4>Created By:{post.createdBy}</h4>
-              <h5>Comments</h5>
-              {post.comments.map((comments, i) => (
-                <div key = {i}>
-                  <h6><b> {comments.createdBy} </b> said: {comments.commentText}</h6>
-                  <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button>
-                </div>
-              ))}
-              
-              
-              
-              <form onSubmit={() => handleCommentSubmit(post._id)} className='m-5 p-5'>
-                <div className='form-group'>
-                  <label>Comment</label>
-                  <input  id="commentText"
-                  name="commentText"
-                  placeholder="Add a Comment"
-                  type="input"
-                  onChange={handleCommentChange}
-                 
-                  />
-                  <button>Submit</button>
-                  </div>
-              </form>
-              <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button>
-            </div>
-          })}
-        </Col>
-        </Row>
         <Row>
           <Col md={{ offset: 3, size: 6 }} sm="12">
             <Button color='dark' onClick={toggle}>
@@ -173,6 +142,50 @@ export function Community(props) {
             </Modal> 
           </Col>
         </Row>
+        <Row>
+        <Col className='m-5'>
+          {postData && postData.map((post, index) => {
+            return <div key = {index} className='grow-in'>
+              <div className='journal-list' id='post-container'>
+              <h2 className='journal-list-item'> Post: {post.postTitle}</h2>
+              <h3 className='journal-list-item'>{post.postText}</h3>
+              <h4 className='journal-list-item'>Created By: {post.createdBy}</h4>
+              {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''}
+              <h5 className='journal-list' id='comment-box'>Comments</h5>
+              </div>
+              
+              {post.comments.map((comments, i) => (
+                <div key = {i} className='comment-section'>
+                  <h6> {comments.createdBy} said {comments.commentText}</h6>
+                  <div className='buttons'>
+                  {Auth.getProfile().data.username === comments.createdBy ? <button className='hidden-button delete-button' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</button> : ''}
+                  </div>
+                </div>
+                     
+              ))}
+               <form onSubmit={() => handleCommentSubmit(post._id)} className='pb-5' id='submitCommentText'>
+                    <div className='buttons' id='submitCommentButton'>
+                      <div className='journal-list' id='addCommentForm'>
+                        <input  id="commentText"
+                        name="commentText"
+                        placeholder="Add a Comment"
+                        type="input"
+                        onChange={handleCommentChange}
+                       
+                        />
+                        
+                        <button className="hidden-button edit-button">Submit</button>
+                        </div>
+                        </div>
+                    </form>
+              
+              
+              
+            </div>
+          })}
+        </Col>
+        </Row>
+        
       </Container>
     );
 }
