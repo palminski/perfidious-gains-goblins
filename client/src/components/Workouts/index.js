@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import {Card, Row, Col} from 'react-bootstrap'
 
 import WorkoutModal from '../WorkoutModal';
 import $ from 'jquery';
@@ -8,7 +7,6 @@ import "./workout.css"
 import {useMutation, useQuery} from '@apollo/client';
 import { QUERY_ME } from "../../utils/queries";
 import { ADD_EXERCISE} from '../../utils/mutations';
-// import { Container } from 'reactstrap';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -104,7 +102,7 @@ export function Workouts(props) {
                         {results && results.map((exercise) =>
                             <Col>
                                 <Card className="workout-cards" style={{width: '30rem', height: '40rem', text: 'fit', text: 'black',}} >
-                                <Card.Header>{exercise.name}</Card.Header>
+                                <Card.Header className='workout-button'><b>{exercise.name}</b></Card.Header>
                                     <Card.Body className="card-body">
                                         <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
                                         <Card.Text><b>Muscle Group:</b> {exercise.muscle}</Card.Text>
