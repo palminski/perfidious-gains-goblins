@@ -3,7 +3,8 @@ import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import { Journal } from '../Journal';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import {Row, Col} from 'react-bootstrap';
 
 export function Login(props) {
   const [formState, setFormState] = useState({ username: '', password: '' });
@@ -33,11 +34,12 @@ export function Login(props) {
   };
 
   return (
-    <div className="container my-1 login-top">
+   
+    <div className="container my-1 login">
 
-      <h2>Login</h2>
+      <h2 className='login-title'>Login</h2>
       <form onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
+        <div className="">
           <label htmlFor="username">Username:</label>
           <input
             placeholder="Username"
@@ -67,5 +69,6 @@ export function Login(props) {
         </div>
       </form>
     </div>
+
   );
 }
