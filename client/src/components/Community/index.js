@@ -80,6 +80,7 @@ export function Community(props) {
       });
       const comment = mutationResponse.data.addComment.createdBy.commentText;
       Auth.getToken(comment);
+      setCommentState({commentText: ''});
       refetch();
     } catch (error) {
       console.log(error);
@@ -172,7 +173,7 @@ const checkId = (post) => {
                         placeholder="Add a Comment"
                         type="input"
                         onChange={handleCommentChange}
-                       
+                        value={commentState.commentText}
                         />
                         
                         <button className="hidden-button edit-button">Submit</button>
