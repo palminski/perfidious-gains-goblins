@@ -146,6 +146,7 @@
     opacity: 1 !important;
   }
   
+
   .navbar-toggler:focus,
   .navbar-toggler:active {
     outline: 0 !important;
@@ -178,6 +179,11 @@
     transform: rotate(-135deg) !important;
     opacity: 0.9 !important;
   }
+
+  .fake-link{
+    cursor: pointer;    
+  }
+
   
   @media (max-width: 767px) {
     .navbar {

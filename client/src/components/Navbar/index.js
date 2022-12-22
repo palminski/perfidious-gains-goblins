@@ -40,7 +40,7 @@ function NavBar(props) {
                 </Navbar.Toggle>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav>
-                        <Navbar.Brand className=""><h2>Globo Gains</h2></Navbar.Brand>
+                        <Navbar.Brand className="fake-link" onClick={() => setPageSelected('Home')}><h2>Globo Gains</h2></Navbar.Brand>
                     </Nav>
                     <Nav className="ms-auto">
                         <Nav.Item>
