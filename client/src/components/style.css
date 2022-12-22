@@ -524,17 +524,10 @@
     padding: 50px;
 }
 
-.workout-card-container {
-  /* background-color:rgb(90, 48, 94); */
-
-}
 
 .workout-cards {
     padding: 40px;
-    align-self: auto;
-    /* background-color: blueviolet; */
-  
-   
+    align-self: auto;  
 }
 
 section {
