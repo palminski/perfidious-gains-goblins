@@ -506,6 +506,7 @@
 
 /* Signup Styling */
 
+
 .signup-top {
     padding-top: 200px;
     padding-bottom: 200px;
@@ -518,14 +519,22 @@
 }
 
 .workout-card-container {
+  /* background-color:rgb(90, 48, 94); */
 
 }
 
 .workout-cards {
     padding: 40px;
     align-self: auto;
+    /* background-color: blueviolet; */
+  
    
 }
+
+section {
+  background-color: rgb(99, 99, 99);
+}
+
 
 
  
