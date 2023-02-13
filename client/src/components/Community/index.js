@@ -144,30 +144,36 @@ const checkId = (post) => {
             </Modal> 
           </Col>
         </Row>
-        <Row>
+        
         <Col className='m-5'>
           {postData && postData.map((post, index) => {
             return <div key = {index} className='grow-in'>
-              <div className='journal-list' id='post-container'>
-              <h2 className='journal-list-item'> Post: {post.postTitle}</h2>
-              <h3 className='journal-list-item'>{post.postText}</h3>
-              <h4 className='journal-list-item'>Created By: {post.createdBy}</h4>
-              {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''}
-              <h5 className='journal-list' id='comment-box'>Comments</h5>
-              </div>
               
+              
+              <div className='post'>
+                <h1>{post.postTitle}<span className='username-post'>//{post.createdBy} {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''}</span>
+                </h1>   
+                <div className='post-body'>
+                <h3>{post.postText}</h3>
+                </div>
+                
+              </div>
+
+              <ul className='comments'>
               {post.comments.map((comments, i) => (
-                <div key = {i} className='comment-section'>
-                  <h6> {comments.createdBy} said {comments.commentText}</h6>
+                
+                  <li key = {i}> <span className='createdby'>{comments.createdBy}</span><br></br> {comments.commentText}
                   <div className=''>
                   {Auth.getProfile().data.username === comments.createdBy ? <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button> : ''}
                   </div>
-                </div>
-                     
+                  </li> 
               ))}
+              </ul>
+              
+              
                <form onSubmit={(e) => handleCommentSubmit(e,post._id)} className='pb-5' id='submitCommentText'>
-                    <div className='' id='submitCommentButton'>
-                      <div className='journal-list' id='addCommentForm'>
+                    
+                      <div className='comment-form' id='addCommentForm'>
                         <input  id="commentText"
                         name="commentText"
                         placeholder="Add a Comment"
@@ -175,10 +181,10 @@ const checkId = (post) => {
                         onChange={handleCommentChange}
                         value={commentState.commentText}
                         />
+                        <br></br>
+                        <button className='comment-button' >Submit</button>
+                        </div>
                         
-                        <Button color="secondary" size='lg'>Submit</Button>
-                        </div>
-                        </div>
                     </form>
               
               
@@ -186,7 +192,7 @@ const checkId = (post) => {
             </div>
           })}
         </Col>
-        </Row>
+        
         
       </Container>
     );
