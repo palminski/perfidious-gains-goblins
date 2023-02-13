@@ -509,6 +509,14 @@
     padding-top: 200px;
     padding-bottom: 200px;
 }
+.login-input{
+  margin: 5px;
+}
+.login-input input{
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 5px;
+}
 
 /* Signup Styling */
 

@@ -40,39 +40,42 @@ export function Signup(props) {
     };
   
     return (
-      <div className="container my-1 signup-top">
-  
+      <div className="container my-1">
         <h2>Signup</h2>
-        <form onSubmit={handleFormSubmit}>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="username">Username: </label>
-            <input
-              placeholder="Username"
-              name="username"
-              type="username"
-              id="username"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            <label min="8" htmlFor="pwd">Password: </label>
-            <input
-              placeholder="******"
-              name="password"
-              type="password"
-              id="pwd"
-              onChange={handleChange}
-            />
-          </div>
+        <hr></hr>
+        <form className='login-signup-form' onSubmit={handleFormSubmit}>
+      <div className='login-input'>
+        <label htmlFor="username">Username: </label>
+          <input
+            placeholder="Username"
+            name="username"
+            type="username"
+            id="username"
+            onChange={handleChange}
+          />
+        </div>
+        <div className='login-input'>
+        <label htmlFor="pwd">Password: </label>
+          <input
+            placeholder="******"
+            name="password"
+            type="password"
+            id="pwd"
+            onChange={handleChange}
+          />
+        </div>
+          
+<hr></hr>
+        
+          <Button type="submit" variant="secondary" size="lg">Submit</Button>
+
           {error ? (
-            <div>
-              <p className='error-text'>{errorText}</p>
-            </div>
-          ) : null}
-          <div className="flex-row flex-end">
-            <Button type="submit" variant="secondary" size="lg">Submit</Button>
+          <div>
+            <p className="error-text">The provided credentials are incorrect</p>
           </div>
-        </form>
+        ) : null}
+        
+      </form>
       </div>
     );
   }
