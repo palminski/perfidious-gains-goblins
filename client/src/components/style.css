@@ -549,6 +549,9 @@
   background-color: rgb(99, 99, 99);
   
 }
+.createdby{
+  text-decoration: underline;
+}
 
 #commentText {
   justify-content: center;

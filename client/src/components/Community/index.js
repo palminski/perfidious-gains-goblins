@@ -151,20 +151,20 @@ const checkId = (post) => {
               
               
               <div className='post'>
-                <h1>{post.postTitle}<span className='username-post'>//{post.createdBy}</span>
+                <h1>{post.postTitle}<span className='username-post'>//{post.createdBy} {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''}</span>
                 </h1>   
                 <div className='post-body'>
                 <h3>{post.postText}</h3>
                 </div>
-                {/* {checkId(post) ? <Button color='danger' size='sm' onClick={() => handleDeletePost(post._id)}>Delete Post</Button> : ''} */}
+                
               </div>
 
               <ul className='comments'>
               {post.comments.map((comments, i) => (
                 
-                  <li key = {i}> {comments.createdBy} said: {comments.commentText}
+                  <li key = {i}> <span className='createdby'>{comments.createdBy}</span><br></br> {comments.commentText}
                   <div className=''>
-                  {/* {Auth.getProfile().data.username === comments.createdBy ? <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button> : ''} */}
+                  {Auth.getProfile().data.username === comments.createdBy ? <Button color='danger' size='sm' onClick={() => handleCommentDelete(post._id, comments._id)}>Delete Comment</Button> : ''}
                   </div>
                   </li> 
               ))}
