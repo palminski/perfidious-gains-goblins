@@ -38,9 +38,10 @@ export function Login(props) {
     <div className="container my-1 login">
 
       <h2 className='login-title'>Login</h2>
-      <form onSubmit={handleFormSubmit}>
-        <div className="">
-          <label htmlFor="username">Username:</label>
+      <hr></hr>
+      <form className='login-signup-form' onSubmit={handleFormSubmit}>
+      <div className='login-input'>
+        <label htmlFor="username">Username: </label>
           <input
             placeholder="Username"
             name="username"
@@ -49,8 +50,8 @@ export function Login(props) {
             onChange={handleChange}
           />
         </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
+        <div className='login-input'>
+        <label htmlFor="pwd">Password: </label>
           <input
             placeholder="******"
             name="password"
@@ -59,14 +60,17 @@ export function Login(props) {
             onChange={handleChange}
           />
         </div>
-        {error ? (
+          
+<hr></hr>
+        
+          <Button type="submit" variant="secondary" size="lg">Submit</Button>
+
+          {error ? (
           <div>
             <p className="error-text">The provided credentials are incorrect</p>
           </div>
         ) : null}
-        <div className="flex-row flex-end">
-          <Button type="submit" variant="secondary" size="lg">Submit</Button>
-        </div>
+        
       </form>
     </div>
 

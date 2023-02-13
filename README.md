@@ -10,9 +10,9 @@
   
   ## Description
  
-  Welcome to Globo Gains! Sometimes when someone wants to try to working out for the first time it can be somewhat overwhelming. This is why we created Globo Gains. Globo Gains helps give workout suggestions and track there progress along the way. With our community section users are able to create posts about there progess, while other users are able to add words of encouragement in the form of comments.
+  Welcome to Globo Gains! Sometimes when someone wants to try working out for the first time it can be somewhat overwhelming. This is why we created Globo Gains. Globo Gains helps give workout suggestions and track their progress along the way. With our community section users are able to create posts about their progress, while other users are able to add words of encouragement in the form of comments.
 
-  When times get tough and you are feeling discouraged always rember, 
+  When times get tough and you are feeling discouraged always remember, 
 
   "Here at Globo Gains we're better than you, and we know it!"
 
@@ -44,13 +44,17 @@
   
   ## Images
 
-  <img src="">
+  <img src="./Screenshot1.PNG">
+  <img src="./Screenshot2.PNG">
+  <img src="./Screenshot3.PNG">
+  <img src="./Screenshot4.PNG">
 
 
   ## Deployment
 
-  [Heroku]()
+  [Heroku](https://globogains.herokuapp.com/)
 
   ## Github
 
   [GitHub](https://github.com/palminski/perfidious-gains-goblins.git)
+

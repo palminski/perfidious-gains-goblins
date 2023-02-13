@@ -159,7 +159,7 @@ export function Journal(props) {
 
                             {exercises && exercises.map(exercise => (
                                 <li key={exercise._id} className="journal-list-item">
-                                    <p>{exercise.exercise} {exercise.amount > 0 && <span>- {exercise.amount} {exercise.units!== "none" && exercise.units}</span>}  {exercise.sets > 0 && <span> - {exercise.sets} sets</span>} {exercise.reps > 0 && exercise.sets > 0 && <span> of </span>} {exercise.reps > 0 && <span>{exercise.reps} reps</span>}</p>
+                                    <p>{exercise.exercise} {exercise.amount > 0 && <span>- {exercise.amount} {exercise.units!== "none" && exercise.units}</span>}  {exercise.sets > 0 && <span> - {exercise.sets} set{exercise.sets > 1 && "s"}</span>} {exercise.reps > 0 && exercise.sets > 0 && <span> of </span>} {exercise.reps > 0 && <span>{exercise.reps} rep{exercise.reps > 1 && "s"}</span>}</p>
                                     <div className="buttons">
                                         <button className="hidden-button edit-button" onClick={() => { handleEditExercise(exercise); setMode("Edit") }}>edit</button>
                                         <button className="hidden-button delete-button" onClick={() => handleDeleteExercise(exercise._id)}>delete</button>

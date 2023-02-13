@@ -94,7 +94,7 @@ export function Workouts(props) {
             <Container fluid className="workout-section">
                 <Row className="find-exercises">
                     <Col>
-                        <Button variant="secondary" size='lg' md={12} style={{ justifyContent: 'center' }} onClick={toggleModal}>Find Exercises!</Button>
+                        <Button variant="secondary" border="dark" size='lg' md={12} style={{ justifyContent: 'center' }} onClick={toggleModal}>Find Exercises!</Button>
                     </Col>
                 </Row>
             </Container>
@@ -102,7 +102,7 @@ export function Workouts(props) {
                 <Row style={{justifyContent:'center', alignItems:'center'}}>
                     {results && results.map((exercise) =>
                         <Col className="workout-cards" md={6}>
-                            <Card border='dark'style={{height: '65rem', text: 'fit', text: 'black', }} >
+                            <Card border='dark' style={{height: '40rem', text: 'fit', text: 'black', overflow: 'auto' }} >
                                 <Card.Header className=''><b>{exercise.name}</b></Card.Header>
                                 <Card.Body className="card-body">
                                     <Card.Text><b>Type:</b> {exercise.type} </Card.Text>
